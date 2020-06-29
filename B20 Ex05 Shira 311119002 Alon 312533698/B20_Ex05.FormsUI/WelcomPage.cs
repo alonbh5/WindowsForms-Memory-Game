@@ -25,7 +25,7 @@ namespace B20_Ex05.FormsUI
         SixByFive // 7
     }
 
-    public delegate void StartInvoker(string i_Name1, string i_Name2, bool i_Pvc, int i_Row, int i_Col);
+    public delegate void StartInvoker(string i_Name1, string i_Name2, bool i_Pvc, int i_NumOfRows, int i_NumOfCols);    
 
     public partial class WelcomPage : Form
     {
@@ -91,6 +91,7 @@ namespace B20_Ex05.FormsUI
                     if (StartClicked != null)
                     {
                         StartClicked.Invoke(Player1Name, Player2Name, m_PvC, m_BoardRow, m_BoardCol);
+                        this.Close();
                     }
                 }
             }

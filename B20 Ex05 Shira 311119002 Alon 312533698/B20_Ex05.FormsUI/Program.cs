@@ -10,7 +10,7 @@ namespace B20_Ex05.FormsUI
     {
         public static void Main ()
         {
-            GameFormsUI NewGame = new GameFormsUI();            
+            GameWinUI NewGame = new GameWinUI();            
         }
     }
 }
