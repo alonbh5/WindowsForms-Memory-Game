@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,26 +25,40 @@ namespace B20_Ex05.FormsUI
         SixByFive // 7
     }
 
+    public delegate void StartInvoker(string i_Name1, string i_Name2, bool i_Pvc, int i_Row, int i_Col);
+
     public partial class WelcomPage : Form
     {
         const int NumOfBoardSizes = 8;
+
+        internal event StartInvoker StartClicked;
 
         eBoardSize m_BoardSize = 0;
         private int m_BoardCol = 6;
         private int m_BoardRow = 6;
         private int m_choice = 0;
-        private bool m_PvP = false;
+        private bool m_PvC = false;
 
         public WelcomPage()
         {
-            InitializeComponent();
+            InitializeComponent();            
+        }
+
+        internal string Player1Name
+        {
+            get { return Player1NameTextBox.Text; }
+        }
+
+        internal string Player2Name
+        {
+            get { return Player2NameTextBox.Text; }
         }
 
         private void PVPButton_Click(object sender, EventArgs e)
         {
-            m_PvP = !m_PvP;
+            m_PvC = !m_PvC;
 
-            if (m_PvP)
+            if (m_PvC)
             {
                 PVPButton.Text = "Aginst a Friend";
                 Player2NameTextBox.Enabled = false;
@@ -62,11 +77,14 @@ namespace B20_Ex05.FormsUI
         {
             if (Player1NameTextBox.Text == string.Empty || Player1NameTextBox.Text == string.Empty)
             {
-
+                //warningor something
             }
             else
             {
-                
+                if (StartClicked != null)
+                {
+                    StartClicked.Invoke(Player1Name, Player2Name, m_PvC, m_BoardRow, m_BoardCol);
+                }
             }
         }
 

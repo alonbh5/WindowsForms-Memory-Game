@@ -10,9 +10,7 @@ namespace B20_Ex05.FormsUI
     {
         public static void Main ()
         {
-            //GameFormsUI NewGame = new GameFormsUI();
-            WelcomPage FormSetting = new WelcomPage();
-            FormSetting.ShowDialog();
+            GameFormsUI NewGame = new GameFormsUI();            
         }
     }
 }
