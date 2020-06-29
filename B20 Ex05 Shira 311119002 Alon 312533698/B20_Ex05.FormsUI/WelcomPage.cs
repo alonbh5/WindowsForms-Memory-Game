@@ -11,11 +11,28 @@ using System.Windows.Forms;
 
 namespace B20_Ex05.FormsUI
 {
+    
+    enum eBoardSize
+    {
+        SixBySix ,
+        FourbyFour,
+        FourByFive,
+        FourBySix,
+        FiveByFour,
+        FiveBySix,
+        SixByFour,
+        SixByFive // 7
+    }
+
     public partial class WelcomPage : Form
     {
+        const int NumOfBoardSizes = 8;
+
+        eBoardSize m_BoardSize = 0;
         private int m_BoardCol = 6;
         private int m_BoardRow = 6;
-        public bool m_PvP = false;
+        private int m_choice = 0;
+        private bool m_PvP = false;
 
         public WelcomPage()
         {
@@ -55,7 +72,53 @@ namespace B20_Ex05.FormsUI
 
         private void BoardSizeButton_Click(object sender, EventArgs e)
         {
-           
+            m_choice++;
+            m_choice = m_choice % NumOfBoardSizes;
+            m_BoardSize = (eBoardSize)m_choice;
+
+            switch (m_BoardSize)
+            {
+                case eBoardSize.FiveByFour:
+                    BoardSizeButton.Text = "5x5";
+                    m_BoardCol = 5;
+                    m_BoardRow = 5;
+                    break;
+                case eBoardSize.FiveBySix:
+                    BoardSizeButton.Text = "5x6";
+                    m_BoardCol = 5;
+                    m_BoardRow = 6;
+                    break;
+                case eBoardSize.FourByFive:
+                    BoardSizeButton.Text = "4x5";
+                    m_BoardCol = 4;
+                    m_BoardRow = 5;
+                    break;
+                case eBoardSize.FourbyFour:
+                    BoardSizeButton.Text = "4x4";
+                    m_BoardCol = 4;
+                    m_BoardRow = 4;
+                    break;
+                case eBoardSize.FourBySix:
+                    BoardSizeButton.Text = "5x6";
+                    m_BoardCol = 5;
+                    m_BoardRow = 6;
+                    break;
+                case eBoardSize.SixByFive:
+                    BoardSizeButton.Text = "6x5";
+                    m_BoardCol = 6;
+                    m_BoardRow = 5;
+                    break;
+                case eBoardSize.SixByFour:
+                    BoardSizeButton.Text = "6x4";
+                    m_BoardCol = 6;
+                    m_BoardRow = 4;
+                    break;
+                case eBoardSize.SixBySix:
+                    BoardSizeButton.Text = "6x6";
+                    m_BoardCol = 6;
+                    m_BoardRow = 6;
+                    break;
+            }
         }
     }
 }
