@@ -75,15 +75,23 @@ namespace B20_Ex05.FormsUI
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            if (Player1NameTextBox.Text == string.Empty || Player1NameTextBox.Text == string.Empty)
+            if (Player1NameTextBox.Text == string.Empty)
             {
-                //warningor something
+                MessageBox.Show("Please Enter Player 1 Name");
             }
             else
             {
-                if (StartClicked != null)
+                if (Player2NameTextBox.Text == string.Empty)
                 {
-                    StartClicked.Invoke(Player1Name, Player2Name, m_PvC, m_BoardRow, m_BoardCol);
+                    MessageBox.Show("Please Enter Player 2 Name");
+                }
+
+                else
+                {
+                    if (StartClicked != null)
+                    {
+                        StartClicked.Invoke(Player1Name, Player2Name, m_PvC, m_BoardRow, m_BoardCol);
+                    }
                 }
             }
         }
