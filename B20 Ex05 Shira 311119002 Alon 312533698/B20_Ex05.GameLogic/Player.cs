@@ -1,4 +1,4 @@
-namespace B20_Ex02
+namespace B20_Ex05
 {
     internal class Player           
     {

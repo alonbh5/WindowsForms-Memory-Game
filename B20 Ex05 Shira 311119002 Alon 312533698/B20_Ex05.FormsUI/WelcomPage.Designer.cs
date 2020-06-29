@@ -28,31 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Player2NameTextBox = new System.Windows.Forms.TextBox();
             this.StartButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.Player1NameTextBox = new System.Windows.Forms.TextBox();
             this.PVPButton = new System.Windows.Forms.Button();
             this.BoardSizeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox1
+            // Player2NameTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(141, 46);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(132, 20);
-            this.textBox1.TabIndex = 0;
+            this.Player2NameTextBox.Location = new System.Drawing.Point(141, 46);
+            this.Player2NameTextBox.Name = "Player2NameTextBox";
+            this.Player2NameTextBox.Size = new System.Drawing.Size(132, 20);
+            this.Player2NameTextBox.TabIndex = 0;
             // 
             // StartButton
             // 
-            this.StartButton.Location = new System.Drawing.Point(349, 155);
+            this.StartButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.StartButton.Location = new System.Drawing.Point(329, 155);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(75, 23);
             this.StartButton.TabIndex = 1;
             this.StartButton.Text = "Start!";
-            this.StartButton.UseVisualStyleBackColor = true;
+            this.StartButton.UseVisualStyleBackColor = false;
+            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
             // label1
             // 
@@ -68,9 +70,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 49);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 13);
+            this.label2.Size = new System.Drawing.Size(110, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Second Player Name";
+            this.label2.Text = "Second Player Name:";
             // 
             // label3
             // 
@@ -81,46 +83,53 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "First Player Name:";
             // 
-            // textBox2
+            // Player1NameTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(141, 19);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(132, 20);
-            this.textBox2.TabIndex = 5;
+            this.Player1NameTextBox.Location = new System.Drawing.Point(141, 19);
+            this.Player1NameTextBox.Name = "Player1NameTextBox";
+            this.Player1NameTextBox.Size = new System.Drawing.Size(132, 20);
+            this.Player1NameTextBox.TabIndex = 5;
             // 
             // PVPButton
             // 
-            this.PVPButton.Location = new System.Drawing.Point(299, 46);
+            this.PVPButton.Location = new System.Drawing.Point(279, 46);
             this.PVPButton.Name = "PVPButton";
             this.PVPButton.Size = new System.Drawing.Size(125, 20);
             this.PVPButton.TabIndex = 6;
             this.PVPButton.Text = "Aginst A Friend";
             this.PVPButton.UseVisualStyleBackColor = true;
+            this.PVPButton.Click += new System.EventHandler(this.PVPButton_Click);
             // 
             // BoardSizeButton
             // 
+            this.BoardSizeButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.BoardSizeButton.Location = new System.Drawing.Point(12, 107);
             this.BoardSizeButton.Name = "BoardSizeButton";
             this.BoardSizeButton.Size = new System.Drawing.Size(126, 71);
             this.BoardSizeButton.TabIndex = 7;
             this.BoardSizeButton.Text = "6 X 6";
-            this.BoardSizeButton.UseVisualStyleBackColor = true;
+            this.BoardSizeButton.UseVisualStyleBackColor = false;
+            this.BoardSizeButton.Click += new System.EventHandler(this.BoardSizeButton_Click);
             // 
             // WelcomPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 196);
+            this.ClientSize = new System.Drawing.Size(418, 193);
             this.Controls.Add(this.BoardSizeButton);
             this.Controls.Add(this.PVPButton);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.Player1NameTextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.StartButton);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.Player2NameTextBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "WelcomPage";
-            this.Text = "WelcomPage";
+            this.ShowIcon = false;
+            this.Text = "Memory Game - Setting";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,12 +137,12 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox Player2NameTextBox;
         private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox Player1NameTextBox;
         private System.Windows.Forms.Button PVPButton;
         private System.Windows.Forms.Button BoardSizeButton;
     }

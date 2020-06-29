@@ -15,7 +15,7 @@ using System.Threading;
 //// To Get StringBuilde of the Gameboard use ToStringBuilder (Array of Object (object[i]=pair # i))
 //// NOTICE: Object X in Array of Object must have ToString Function!
 
-namespace B20_Ex02
+ namespace B20_Ex05
 {
     public class Game             
     {

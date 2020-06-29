@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace B20_Ex02
+namespace B20_Ex05
 {
     internal class Board        
     {

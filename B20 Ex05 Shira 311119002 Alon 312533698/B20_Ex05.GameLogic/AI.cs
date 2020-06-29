@@ -1,6 +1,6 @@
 using System;
 
-namespace B20_Ex02
+namespace B20_Ex05
 {
     internal struct AIMemCell
     {
