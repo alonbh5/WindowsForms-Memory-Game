@@ -22,8 +22,9 @@ namespace B20_Ex05.FormsUI
         {
             m_FormSetting.StartClicked += OnStartClick;
             m_FormSetting.ShowDialog();
-            if (m_GameForm != null)
+            if (m_GameForm != null)         
             {
+               
                 m_GameForm.ShowDialog();
             }
             
@@ -31,9 +32,16 @@ namespace B20_Ex05.FormsUI
 
         internal void OnStartClick (string i_Name1, string i_Name2, bool i_Pvc, int i_Row, int i_Col)
         {
+            string name = i_Name1 + ":";
             m_game = new Game(i_Name1, i_Name2, i_Pvc, i_Row, i_Col);
-            m_GameForm = new GameForm(); //needs to be: ----> m_GameForm = new GameForm(i_Row, i_Col); 
+            m_GameForm = new GameForm(i_Col, i_Row); //needs to be: ----> m_GameForm = new GameForm(i_Row, i_Col); 
+
+            m_GameForm.Player1Name = name;
+            name = i_Name2 + ":";
+            m_GameForm.Player2Name = name;
         }
+
+        //internal void OnCra
                
 
         internal bool OnReveal(int i_Row1, int i_Col1, int i_Row2, int i_Col2, bool i_IsTurnPlayer1)

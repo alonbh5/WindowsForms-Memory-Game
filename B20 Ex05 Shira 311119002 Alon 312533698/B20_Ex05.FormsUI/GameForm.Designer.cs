@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.messageQueue1 = new System.Messaging.MessageQueue();
+            this.m_CurrentPlayer = new System.Windows.Forms.Label();
+            this.m_Player1Label = new System.Windows.Forms.Label();
+            this.m_Player2Label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // messageQueue1
@@ -37,19 +40,54 @@
             this.messageQueue1.MessageReadPropertyFilter.LookupId = true;
             this.messageQueue1.SynchronizingObject = this;
             // 
+            // m_CurrentPlayer
+            // 
+            this.m_CurrentPlayer.AutoSize = true;
+            this.m_CurrentPlayer.Location = new System.Drawing.Point(12, 478);
+            this.m_CurrentPlayer.Name = "m_CurrentPlayer";
+            this.m_CurrentPlayer.Size = new System.Drawing.Size(76, 13);
+            this.m_CurrentPlayer.TabIndex = 0;
+            this.m_CurrentPlayer.Text = "Current Player:";
+            // 
+            // m_Player1Label
+            // 
+            this.m_Player1Label.AutoSize = true;
+            this.m_Player1Label.Location = new System.Drawing.Point(12, 506);
+            this.m_Player1Label.Name = "m_Player1Label";
+            this.m_Player1Label.Size = new System.Drawing.Size(38, 13);
+            this.m_Player1Label.TabIndex = 1;
+            this.m_Player1Label.Text = "Name:";
+            // 
+            // m_Player2Label
+            // 
+            this.m_Player2Label.AutoSize = true;
+            this.m_Player2Label.Location = new System.Drawing.Point(12, 539);
+            this.m_Player2Label.Name = "m_Player2Label";
+            this.m_Player2Label.Size = new System.Drawing.Size(38, 13);
+            this.m_Player2Label.TabIndex = 2;
+            this.m_Player2Label.Text = "Name:";
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1013, 577);
+            this.Controls.Add(this.m_Player2Label);
+            this.Controls.Add(this.m_Player1Label);
+            this.Controls.Add(this.m_CurrentPlayer);
+            this.MaximizeBox = false;
             this.Name = "GameForm";
-            this.Text = "GameForm";
+            this.Text = "Memory Game";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Messaging.MessageQueue messageQueue1;
+        private System.Windows.Forms.Label m_Player2Label;
+        private System.Windows.Forms.Label m_Player1Label;
+        private System.Windows.Forms.Label m_CurrentPlayer;
     }
 }
