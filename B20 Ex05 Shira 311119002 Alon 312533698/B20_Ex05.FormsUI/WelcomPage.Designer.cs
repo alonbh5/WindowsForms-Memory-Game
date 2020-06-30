@@ -43,7 +43,7 @@
             this.Player2NameTextBox.Location = new System.Drawing.Point(141, 46);
             this.Player2NameTextBox.Name = "Player2NameTextBox";
             this.Player2NameTextBox.Size = new System.Drawing.Size(132, 20);
-            this.Player2NameTextBox.TabIndex = 0;
+            this.Player2NameTextBox.TabIndex = 1;
             // 
             // StartButton
             // 
@@ -51,7 +51,7 @@
             this.StartButton.Location = new System.Drawing.Point(329, 155);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(75, 23);
-            this.StartButton.TabIndex = 1;
+            this.StartButton.TabIndex = 4;
             this.StartButton.Text = "Start!";
             this.StartButton.UseVisualStyleBackColor = false;
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
@@ -62,7 +62,7 @@
             this.label1.Location = new System.Drawing.Point(12, 82);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 13);
-            this.label1.TabIndex = 2;
+            this.label1.TabIndex = 5;
             this.label1.Text = "Board Size:";
             // 
             // label2
@@ -71,7 +71,7 @@
             this.label2.Location = new System.Drawing.Point(12, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(110, 13);
-            this.label2.TabIndex = 3;
+            this.label2.TabIndex = 6;
             this.label2.Text = "Second Player Name:";
             // 
             // label3
@@ -80,7 +80,7 @@
             this.label3.Location = new System.Drawing.Point(12, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 13);
-            this.label3.TabIndex = 4;
+            this.label3.TabIndex = 7;
             this.label3.Text = "First Player Name:";
             // 
             // Player1NameTextBox
@@ -88,14 +88,14 @@
             this.Player1NameTextBox.Location = new System.Drawing.Point(141, 19);
             this.Player1NameTextBox.Name = "Player1NameTextBox";
             this.Player1NameTextBox.Size = new System.Drawing.Size(132, 20);
-            this.Player1NameTextBox.TabIndex = 5;
+            this.Player1NameTextBox.TabIndex = 0;
             // 
             // PVPButton
             // 
             this.PVPButton.Location = new System.Drawing.Point(279, 46);
             this.PVPButton.Name = "PVPButton";
             this.PVPButton.Size = new System.Drawing.Size(125, 20);
-            this.PVPButton.TabIndex = 6;
+            this.PVPButton.TabIndex = 2;
             this.PVPButton.Text = "Aginst A Friend";
             this.PVPButton.UseVisualStyleBackColor = true;
             this.PVPButton.Click += new System.EventHandler(this.PVPButton_Click);
@@ -106,7 +106,7 @@
             this.BoardSizeButton.Location = new System.Drawing.Point(12, 107);
             this.BoardSizeButton.Name = "BoardSizeButton";
             this.BoardSizeButton.Size = new System.Drawing.Size(126, 71);
-            this.BoardSizeButton.TabIndex = 7;
+            this.BoardSizeButton.TabIndex = 3;
             this.BoardSizeButton.Text = "6 X 6";
             this.BoardSizeButton.UseVisualStyleBackColor = false;
             this.BoardSizeButton.Click += new System.EventHandler(this.BoardSizeButton_Click);

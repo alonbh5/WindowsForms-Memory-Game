@@ -42,8 +42,10 @@
             // 
             // m_CurrentPlayer
             // 
+            this.m_CurrentPlayer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.m_CurrentPlayer.AutoSize = true;
-            this.m_CurrentPlayer.Location = new System.Drawing.Point(12, 478);
+            this.m_CurrentPlayer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.m_CurrentPlayer.Location = new System.Drawing.Point(12, 484);
             this.m_CurrentPlayer.Name = "m_CurrentPlayer";
             this.m_CurrentPlayer.Size = new System.Drawing.Size(76, 13);
             this.m_CurrentPlayer.TabIndex = 0;
@@ -51,8 +53,10 @@
             // 
             // m_Player1Label
             // 
+            this.m_Player1Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.m_Player1Label.AutoSize = true;
-            this.m_Player1Label.Location = new System.Drawing.Point(12, 506);
+            this.m_Player1Label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.m_Player1Label.Location = new System.Drawing.Point(12, 514);
             this.m_Player1Label.Name = "m_Player1Label";
             this.m_Player1Label.Size = new System.Drawing.Size(38, 13);
             this.m_Player1Label.TabIndex = 1;
@@ -60,8 +64,10 @@
             // 
             // m_Player2Label
             // 
+            this.m_Player2Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.m_Player2Label.AutoSize = true;
-            this.m_Player2Label.Location = new System.Drawing.Point(12, 539);
+            this.m_Player2Label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.m_Player2Label.Location = new System.Drawing.Point(12, 543);
             this.m_Player2Label.Name = "m_Player2Label";
             this.m_Player2Label.Size = new System.Drawing.Size(38, 13);
             this.m_Player2Label.TabIndex = 2;
@@ -71,11 +77,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1013, 577);
             this.Controls.Add(this.m_Player2Label);
             this.Controls.Add(this.m_Player1Label);
             this.Controls.Add(this.m_CurrentPlayer);
             this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1029, 616);
             this.Name = "GameForm";
             this.Text = "Memory Game";
             this.ResumeLayout(false);
