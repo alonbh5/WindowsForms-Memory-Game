@@ -48,7 +48,7 @@
             this.m_CurrentPlayer.Location = new System.Drawing.Point(12, 484);
             this.m_CurrentPlayer.Name = "m_CurrentPlayer";
             this.m_CurrentPlayer.Size = new System.Drawing.Size(76, 13);
-            this.m_CurrentPlayer.TabIndex = 0;
+            this.m_CurrentPlayer.TabIndex = 100;
             this.m_CurrentPlayer.Text = "Current Player:";
             // 
             // m_Player1Label
@@ -59,7 +59,7 @@
             this.m_Player1Label.Location = new System.Drawing.Point(12, 514);
             this.m_Player1Label.Name = "m_Player1Label";
             this.m_Player1Label.Size = new System.Drawing.Size(38, 13);
-            this.m_Player1Label.TabIndex = 1;
+            this.m_Player1Label.TabIndex = 111;
             this.m_Player1Label.Text = "Name:";
             // 
             // m_Player2Label
@@ -70,7 +70,7 @@
             this.m_Player2Label.Location = new System.Drawing.Point(12, 543);
             this.m_Player2Label.Name = "m_Player2Label";
             this.m_Player2Label.Size = new System.Drawing.Size(38, 13);
-            this.m_Player2Label.TabIndex = 2;
+            this.m_Player2Label.TabIndex = 112;
             this.m_Player2Label.Text = "Name:";
             // 
             // GameForm

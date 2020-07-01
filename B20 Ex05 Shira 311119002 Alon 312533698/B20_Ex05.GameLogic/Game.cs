@@ -161,6 +161,12 @@ using System.Threading;
             return m_GameBoard.IsGameOver();
         }
 
+        public int GetIndexAtBoard(int i_Row, int i_Col)
+        {
+            return m_GameBoard.m_Board[i_Row, i_Col].Value;
+        }
+
+
         public bool IsAIPlay()
         {
             return m_Player2.Pc;
