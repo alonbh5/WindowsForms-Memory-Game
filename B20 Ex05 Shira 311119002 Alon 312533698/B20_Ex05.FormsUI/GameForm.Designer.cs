@@ -82,9 +82,10 @@
             this.Controls.Add(this.m_Player2Label);
             this.Controls.Add(this.m_Player1Label);
             this.Controls.Add(this.m_CurrentPlayer);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(1029, 616);
             this.Name = "GameForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Memory Game";
             this.ResumeLayout(false);
             this.PerformLayout();

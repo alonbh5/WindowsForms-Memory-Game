@@ -129,6 +129,7 @@
             this.MinimizeBox = false;
             this.Name = "WelcomPage";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Memory Game - Setting";
             this.ResumeLayout(false);
             this.PerformLayout();

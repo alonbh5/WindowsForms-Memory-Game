@@ -42,8 +42,10 @@ namespace B20_Ex05.FormsUI
             Button curButton;
             int x = 25;
             int y = 25;
-            int spacex = 100;// (int)(this.ClientSize.Width *0.06);
-            int spacey = 100;// (int)(this.ClientSize.Height * 0.06);
+            int spaceX = 115;// (int)(this.ClientSize.Width *0.06);
+            int spaceY = 105;// (int)(this.ClientSize.Height * 0.06);
+
+            this.Size = new Size(130 * i_col, 146 * i_row);
 
             for (int i = 0; i< i_row; i++)
             {
@@ -54,19 +56,19 @@ namespace B20_Ex05.FormsUI
                     curButton.AutoSize = true;
                     curButton.Location = new System.Drawing.Point(x, y);
                     //curButton.Name = "button1";
-                    curButton.Size = new System.Drawing.Size(100, 90);
+                    curButton.Size = new System.Drawing.Size(100, 100);
                     curButton.TabIndex = i+j;
-                    curButton.Text = "button1";
+                    curButton.Text = "button"+i+"."+j;
                     curButton.UseVisualStyleBackColor = true;
                     curButton.Anchor = AnchorStyles.Right;
                     this.Controls.Add(curButton);
-                    x += spacex;
+                    x += spaceX;
                 }
                 x = 25;
-                y += spacey+10;
+                y += spaceY;
             }
-
-            //size of form need to be abjust by size...
+            
+            
         }
     }
 }
