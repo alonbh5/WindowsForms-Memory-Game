@@ -6,6 +6,8 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Windows.Forms;
+using System.Drawing;
 
 namespace B20_Ex05.FormsUI
 {
@@ -22,6 +24,7 @@ namespace B20_Ex05.FormsUI
         bool m_IsPlayer1Turn = true;        
         int m_FirstCol;
         int m_FirstRow;
+        Button FirstButton;
 
 
 
@@ -62,7 +65,7 @@ namespace B20_Ex05.FormsUI
             return foundPair;
         }
 
-        internal bool OnClick (int i_col,int i_row)
+        internal bool OnClick (int i_col,int i_row, object sender)
         {
             
             //gets it from Form,
@@ -74,14 +77,40 @@ namespace B20_Ex05.FormsUI
                 m_Game.FirstReveal(i_row, i_col, m_IsPlayer1Turn);
                 m_FirstRow = i_row;
                 m_FirstCol = i_col;
-                //int t = m_Game.GetIndexAtBoard(i_row, i_col);
+                FirstButton = (sender as Button);
+
+
+                char t = (char)m_Game.GetIndexAtBoard(i_row, i_col);
+                t += 'A';
+                (sender as Button).Text = t.ToString();
+                if (m_IsPlayer1Turn)
+                {
+                    (sender as Button).BackColor = Color.LightGreen;
+                }
+                else
+                {
+                    (sender as Button).BackColor = Color.LightBlue;
+                }
             }
             else 
             {
                 m_SecondClick = false;
                 m_Game.SecondReveal(i_row, i_col);                
                 m_Game.CheckTurn(m_FirstRow, m_FirstCol, i_row, i_col, ref m_IsPlayer1Turn); // add delgeage?
-                
+
+
+                char t = (char)m_Game.GetIndexAtBoard(i_row, i_col);
+                t += 'A';
+                (sender as Button).Text = t.ToString();
+                if (m_IsPlayer1Turn)
+                {
+                    (sender as Button).BackColor = Color.LightGreen;
+                }
+                else
+                {
+                    (sender as Button).BackColor = Color.LightBlue;
+                }
+
             }
 
             // update board........

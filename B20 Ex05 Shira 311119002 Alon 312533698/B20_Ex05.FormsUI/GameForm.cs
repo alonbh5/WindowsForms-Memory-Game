@@ -12,7 +12,7 @@ namespace B20_Ex05.FormsUI
 {
 
     //public delegate bool PairInvoker(string i_Name1, string i_Name2, bool i_Pvc, int i_NumOfRows, int i_NumOfCols);
-    public delegate bool PairInvoker(int i_row,int i_col);
+    public delegate bool PairInvoker(int i_row,int i_col, object sender);
     public partial class GameForm : Form
     {
         
@@ -81,7 +81,7 @@ namespace B20_Ex05.FormsUI
                     curButton.Location = new System.Drawing.Point(x, y);                    
                     curButton.Size = new System.Drawing.Size(100, 100);
                     curButton.TabIndex = i*10+j;
-                    curButton.Text = i+"-"+j;
+                    curButton.Name = i+"-"+j;
                     curButton.UseVisualStyleBackColor = true;
                     curButton.Anchor = AnchorStyles.Right;
                     curButton.BackColor = Color.LightGray;
@@ -101,11 +101,11 @@ namespace B20_Ex05.FormsUI
             {
                 if ((sender as Button).BackColor == Color.LightGray)
                 {
-                    int row = int.Parse((sender as Button).Text[0].ToString());
-                    int col = int.Parse((sender as Button).Text[2].ToString());
+                    int row = int.Parse((sender as Button).Name[0].ToString());
+                    int col = int.Parse((sender as Button).Name[2].ToString());
                     if (PairsWaschosen != null)
                     {
-                        PairsWaschosen.Invoke(row,col);
+                        PairsWaschosen.Invoke(row,col, sender);
                     }
                 }
             }
