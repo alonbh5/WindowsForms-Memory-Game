@@ -1,4 +1,4 @@
-﻿namespace B20_Ex05.FormsUI
+namespace B20_Ex05.FormsUI
 {
     partial class WelcomPage
     {
@@ -44,6 +44,8 @@
             this.Player2NameTextBox.Name = "Player2NameTextBox";
             this.Player2NameTextBox.Size = new System.Drawing.Size(132, 20);
             this.Player2NameTextBox.TabIndex = 1;
+            this.Player2NameTextBox.Enabled = false;
+            this.Player2NameTextBox.Text = "-Computer-";
             // 
             // StartButton
             // 
@@ -107,7 +109,7 @@
             this.BoardSizeButton.Name = "BoardSizeButton";
             this.BoardSizeButton.Size = new System.Drawing.Size(126, 71);
             this.BoardSizeButton.TabIndex = 3;
-            this.BoardSizeButton.Text = "6 X 6";
+            this.BoardSizeButton.Text = "4x4";
             this.BoardSizeButton.UseVisualStyleBackColor = false;
             this.BoardSizeButton.Click += new System.EventHandler(this.BoardSizeButton_Click);
             // 
@@ -127,13 +129,12 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "WelcomPage";
+            this.Name = "WelcomePage";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Memory Game - Setting";
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
