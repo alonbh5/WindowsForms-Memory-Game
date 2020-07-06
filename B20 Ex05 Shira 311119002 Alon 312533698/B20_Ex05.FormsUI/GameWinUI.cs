@@ -9,6 +9,8 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Security.Policy;
+using System.Runtime.Remoting.Messaging;
 
 namespace B20_Ex05.FormsUI
 {
@@ -20,6 +22,7 @@ namespace B20_Ex05.FormsUI
         GameForm m_GameForm;
         Game m_Game;
         bool m_SecondClick = false; //when click on square this go to true, after second click it invoke pairinvoker
+        private string[] m_picture;
 
         bool m_IsPlayer1Turn = true;
         int m_FirstCol;
@@ -66,6 +69,7 @@ namespace B20_Ex05.FormsUI
             m_Game = new Game(o_Name1, o_Name2, o_Pvc, o_Row, o_Col);
             m_Game.PairWasFound += PairFound;
             m_GameForm = new GameForm(o_Col, o_Row, o_Name1, o_Name2);
+            makePictures((o_Row*o_Col)/2);
         }
 
         internal void resetGame()
@@ -126,8 +130,9 @@ namespace B20_Ex05.FormsUI
                 //foreach (Control item in m_GameForm.Controls)
                 //{
                 //    item.Enabled = false;      // = true: enable all, = false: disable all
-                //}                
-
+                //}     
+                
+                
                 playAI();
                 
                // m_GameForm.PairWasChosen -= OnAIClick;
@@ -275,6 +280,20 @@ namespace B20_Ex05.FormsUI
             prompt.Append(msg);
 
             m_GameOver = new GameOver(prompt.ToString());
+        }
+
+        private void makePictures (int i_size)
+        {
+            m_picture = new string[i_size];
+            string ImgUrl = string.Empty;
+
+            for (int i = 0; i < i_size; i++) 
+            {
+                System.Net.HttpWebRequest req = (System.Net.HttpWebRequest)System.Net.WebRequest.Create("https://picsum.photos/80");
+                System.Net.HttpWebResponse myResp = (System.Net.HttpWebResponse)req.GetResponse();
+                m_picture[i] = myResp.ResponseUri.ToString();
+                myResp.Close();
+            }
         }
     }
 }

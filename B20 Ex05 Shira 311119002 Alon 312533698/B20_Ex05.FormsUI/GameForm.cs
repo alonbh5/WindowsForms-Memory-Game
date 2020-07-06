@@ -117,6 +117,7 @@ namespace B20_Ex05.FormsUI
                     currButton.Anchor = AnchorStyles.Right;
                     currButton.BackColor = Color.LightGray;
                     currButton.Click += tileButton_Click;
+                    //currButton.
                     this.Controls.Add(currButton);
                     x += spaceX;
                 }

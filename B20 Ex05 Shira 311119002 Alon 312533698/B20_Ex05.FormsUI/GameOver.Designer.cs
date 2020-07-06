@@ -43,8 +43,9 @@
             this.EndGame.Location = new System.Drawing.Point(30, 18);
             this.EndGame.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.EndGame.Name = "EndGame";
-            this.EndGame.Size = new System.Drawing.Size(0, 24);
-            this.EndGame.TabIndex = 0;
+            this.EndGame.Size = new System.Drawing.Size(60, 24);
+            this.EndGame.TabIndex = 3;
+            this.EndGame.Text = "Score";
             // 
             // Again
             // 
@@ -52,7 +53,7 @@
             this.Again.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Again.Name = "Again";
             this.Again.Size = new System.Drawing.Size(112, 35);
-            this.Again.TabIndex = 1;
+            this.Again.TabIndex = 0;
             this.Again.Text = "Play Again!";
             this.Again.UseVisualStyleBackColor = true;
             this.Again.Click += new System.EventHandler(this.Again_Click);
@@ -63,7 +64,7 @@
             this.Exit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Exit.Name = "Exit";
             this.Exit.Size = new System.Drawing.Size(112, 35);
-            this.Exit.TabIndex = 2;
+            this.Exit.TabIndex = 1;
             this.Exit.Text = "Exit";
             this.Exit.UseVisualStyleBackColor = true;
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
@@ -77,7 +78,7 @@
             this.msgQuestion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.msgQuestion.Name = "msgQuestion";
             this.msgQuestion.Size = new System.Drawing.Size(316, 25);
-            this.msgQuestion.TabIndex = 3;
+            this.msgQuestion.TabIndex = 2;
             this.msgQuestion.Text = "Do You Wish To Play Again?";
             // 
             // GameOver
@@ -85,13 +86,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(390, 248);
+            this.ControlBox = false;
             this.Controls.Add(this.msgQuestion);
             this.Controls.Add(this.Exit);
             this.Controls.Add(this.Again);
             this.Controls.Add(this.EndGame);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
             this.Name = "GameOver";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GameOver";
             this.ResumeLayout(false);
             this.PerformLayout();
