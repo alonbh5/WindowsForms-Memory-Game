@@ -58,10 +58,37 @@ namespace B20_Ex05.FormsUI
             m_Player1Label.Text=String.Format("{0}: {1} Pair(s)", Player1Name, m_player1Pairs);
         }
 
+        internal Color Player1Color 
+        {
+            get { return m_Player1Label.BackColor; }
+        }
+
+        internal Color Player2Color
+        {
+            get { return m_Player2Label.BackColor; }
+        }
+
         internal void Player2FoundPair() //upadte score
         {
             m_player2Pairs++;
             m_Player2Label.Text = String.Format("{0}: {1} Pair(s)", Player2Name, m_player2Pairs);
+        }
+
+        internal void ChangeCurrentPlayer(string PlayerName)
+        {
+            if (PlayerName == Player1Name)
+            {
+                m_CurrentPlayer.BackColor = m_Player1Label.BackColor;
+            }
+            else
+            {
+                m_CurrentPlayer.BackColor = m_Player2Label.BackColor;
+            }
+
+            m_CurrentPlayer.Text = String.Format("Current Player: {0}", PlayerName);
+            
+
+            m_CurrentPlayer.Refresh();
         }
 
         private void createButtons(int i_Col, int i_Row)
@@ -110,10 +137,16 @@ namespace B20_Ex05.FormsUI
 
                     if (PairWasChosen != null)
                     {
-                        PairWasChosen.Invoke(row, col, sender);
+                        if (PairWasChosen.Invoke(row, col, sender))
+                        { // game over
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
                     }
                 }
             }
         }
+
+        
     }
 }

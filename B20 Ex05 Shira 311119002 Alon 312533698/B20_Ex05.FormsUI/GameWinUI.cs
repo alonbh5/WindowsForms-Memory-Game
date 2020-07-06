@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace B20_Ex05.FormsUI
 {
@@ -19,31 +20,60 @@ namespace B20_Ex05.FormsUI
         GameForm m_GameForm;
         Game m_Game;
         bool m_SecondClick = false; //when click on square this go to true, after second click it invoke pairinvoker
-        bool m_IsPlayer1Turn = true;        
+
+        bool m_IsPlayer1Turn = true;
         int m_FirstCol;
         int m_FirstRow;
         Button FirstButton;
         Button SecondButton;
+        GameOver m_GameOver;
 
         public GameWinUI()
         {
+            DialogResult Result;
+            bool Play = true;
+
             m_FormSetting.StartClicked += OnStartClick;
             m_FormSetting.ShowDialog();
 
-            if (m_GameForm != null)         
+            while (Play && m_GameForm != null)
             {
                 m_GameForm.PairWasChosen += OnClick;
-                m_GameForm.ShowDialog();
-            }            
+                Result = m_GameForm.ShowDialog();
+
+                if (Result == DialogResult.OK)
+                {
+                    gameOver();
+                    Result = m_GameOver.ShowDialog();
+                    if (Result == DialogResult.No)
+                    {
+                        Play = false;
+                    }
+                    else
+                    {
+                        resetGame();
+                    }
+                }
+                else
+                {
+                    Play = false;
+                }
+            }
         }
 
         internal void OnStartClick(string o_Name1, string o_Name2, bool o_Pvc, int o_Row, int o_Col)
-        {            
+        {
             m_Game = new Game(o_Name1, o_Name2, o_Pvc, o_Row, o_Col);
-            m_GameForm = new GameForm(o_Col, o_Row, o_Name1, o_Name2);             
+            m_Game.PairWasFound += PairFound;
+            m_GameForm = new GameForm(o_Col, o_Row, o_Name1, o_Name2);
         }
 
-        //internal void OnCra               
+        internal void resetGame()
+        {
+            m_Game = new Game(m_Game.Player1Name(), m_Game.Player2Name(), m_Game.IsAIPlay(), m_Game.BoardRows(), m_Game.BoardCols());
+            m_Game.PairWasFound += PairFound;
+            m_GameForm = new GameForm(m_Game.BoardCols(), m_Game.BoardRows(), m_Game.Player1Name(), m_Game.Player2Name());
+        }
 
         internal bool OnReveal(int o_Row1, int o_Col1, int o_Row2, int o_Col2, bool io_IsTurnPlayer1)
         {
@@ -73,7 +103,7 @@ namespace B20_Ex05.FormsUI
                 //case first click, need to update text
                 //as button sender all of that
                 m_SecondClick = true;
-                m_Game.FirstReveal(io_Row, io_Col, m_IsPlayer1Turn);
+                m_Game.FirstReveal(io_Row, io_Col, m_IsPlayer1Turn);                
                 m_FirstRow = io_Row;
                 m_FirstCol = io_Col;
                 FirstButton = (io_Sender as Button);
@@ -81,65 +111,81 @@ namespace B20_Ex05.FormsUI
             else 
             {
                 m_SecondClick = false;
-                m_Game.SecondReveal(io_Row, io_Col);                
-                m_Game.CheckTurn(m_FirstRow, m_FirstCol, io_Row, io_Col, ref m_IsPlayer1Turn); // add delgeage?
+                m_Game.SecondReveal(io_Row, io_Col);
                 SecondButton = (io_Sender as Button);
+                m_Game.CheckTurn(m_FirstRow, m_FirstCol, io_Row, io_Col, ref m_IsPlayer1Turn); // add delgeage?                 
             }
 
             // update board........
             if ((!m_Game.IsGameOver()) && !m_IsPlayer1Turn && m_Game.IsAIPlay()) 
             {
+                //m_GameForm.PairWasChosen -= OnClick;
+                // m_GameForm.PairWasChosen += OnAIClick;
+                // m_GameForm.Enabled = false;
+                //m_GameForm.Refresh();
+                //foreach (Control item in m_GameForm.Controls)
+                //{
+                //    item.Enabled = false;      // = true: enable all, = false: disable all
+                //}                
 
-                m_GameForm.PairWasChosen -= OnClick;
-                m_GameForm.PairWasChosen += OnAIClick;
-                //Thread.Sleep(1000);
-                //m_Game.GetInputFromAI(ref m_FirstRow, ref m_FirstCol);
-                //m_Game.FirstReveal(m_FirstRow, m_FirstCol, m_IsPlayer1Turn); //add to revele..
-                //Thread.Sleep(1000);
-                //m_Game.GetInputFromAI(ref io_Row, ref io_Col);
-                //m_Game.SecondReveal(io_Row, io_Col);
-                //m_Game.CheckTurn(m_FirstRow, m_FirstCol, io_Row, io_Col, ref m_IsPlayer1Turn);
+                playAI();
+                
+               // m_GameForm.PairWasChosen -= OnAIClick;
+                //m_GameForm.PairWasChosen += OnClick;
+                //m_GameForm.Enabled = true;
+                //m_GameForm.Refresh();
+                //foreach (Control item in m_GameForm.Controls)
+                //{
+                //    item.Enabled = true;      // = true: enable all, = false: disable all
+                //}
+
             }
 
-            return true;
+            return m_Game.IsGameOver();
         }
 
-        private bool OnAIClick(int io_Row, int io_Col, object i_Sender)
+        private bool OnAIClick(int i_row, int i_col, object sender)
         {
-            // reset to last turn of user - if got here then last pair reveled was wrong
-            resetButton(FirstButton);
-            resetButton(SecondButton);
+            return m_Game.IsGameOver();
+        }
+
+        private bool playAI()
+        {            
+            int row = -1, col=-1;
 
             // AI turn until he got a wrong pair, m_IsPlayer1Turn changed to true or end of game
             while ((!m_Game.IsGameOver()) && !m_IsPlayer1Turn && m_Game.IsAIPlay())
             {
+                            
+                Thread.Sleep(1000);                
                 m_Game.GetInputFromAI(ref m_FirstRow, ref m_FirstCol);
-                m_Game.FirstReveal(m_FirstRow, m_FirstCol, m_IsPlayer1Turn); //add to revele..
+                m_Game.FirstReveal(m_FirstRow, m_FirstCol, m_IsPlayer1Turn);
                 FirstButton = m_GameForm.Buttons[m_FirstRow, m_FirstCol];
+
                 changeColor(FirstButton);
                 changeText(m_FirstRow, m_FirstCol, FirstButton);
+                FirstButton.Refresh();
 
-                m_Game.GetInputFromAI(ref io_Row, ref io_Col);
-                m_Game.SecondReveal(io_Row, io_Col);
-                m_Game.CheckTurn(m_FirstRow, m_FirstCol, io_Row, io_Col, ref m_IsPlayer1Turn);
-                SecondButton = m_GameForm.Buttons[m_FirstRow, m_FirstCol];
+                
+                Thread.Sleep(1000);
+                
+                m_Game.GetInputFromAI(ref row, ref col);
+                m_Game.SecondReveal(row, col);                
+                SecondButton = m_GameForm.Buttons[row, col];
+
                 changeColor(SecondButton);
-                changeText(m_FirstRow, m_FirstCol, SecondButton);
+                changeText(row, col, SecondButton);
+                SecondButton.Refresh();
 
-                FirstButton.Show();
-                SecondButton.Show();
+                m_Game.CheckTurn(m_FirstRow, m_FirstCol, row, col, ref m_IsPlayer1Turn);                
             }
 
             if (!m_Game.IsGameOver())
             {
                 // reset to last turn of AI - if got here then last pair reveled was wrong and not end of game
                 resetButton(FirstButton);
-                resetButton(SecondButton);
-            }
-
-            // change the next click to user click
-            m_GameForm.PairWasChosen -= OnAIClick;
-            m_GameForm.PairWasChosen += OnClick;
+                resetButton(SecondButton);                
+            }            
 
             return true;
         }
@@ -148,11 +194,11 @@ namespace B20_Ex05.FormsUI
         {
             if (m_IsPlayer1Turn)
             {
-                (i_Sender as Button).BackColor = Color.LightGreen;
+                (i_Sender as Button).BackColor = m_GameForm.Player1Color;
             }
             else
             {
-                (i_Sender as Button).BackColor = Color.LightBlue;
+                (i_Sender as Button).BackColor = m_GameForm.Player2Color;
             }
         }
 
@@ -167,6 +213,68 @@ namespace B20_Ex05.FormsUI
         {
             (i_Sender as Button).ResetText();
             (i_Sender as Button).BackColor = Color.LightGray;
+            (i_Sender as Button).Refresh();
+        }
+
+        public void PairFound(int i_Row1, int i_Col1, int i_Row2, int i_Col2, bool i_Found)
+        {
+            if (i_Found)
+            {
+                // update score
+                if (m_IsPlayer1Turn)
+                {
+                    m_GameForm.Player1FoundPair();
+                }
+                else
+                {
+                    m_GameForm.Player2FoundPair();
+                }
+            }
+            else
+            {
+                //show pair for a few seconde and hide
+                SecondButton.Refresh();               
+                Thread.Sleep(2000);                
+                resetButton(FirstButton);
+                resetButton(SecondButton);
+
+                if (m_IsPlayer1Turn)
+                {
+                    m_GameForm.ChangeCurrentPlayer(m_GameForm.Player1Name);
+                }
+                else
+                {
+                    m_GameForm.ChangeCurrentPlayer(m_GameForm.Player2Name);
+                }
+
+            }
+        }
+
+        private void gameOver()
+        {
+            StringBuilder prompt = new StringBuilder();
+            string msg = string.Empty;
+
+            if (m_Game.GetWinner(out string winner))
+            { // Case of tie
+                msg = "It's a TIE!";
+            }
+            else
+            {
+                msg = string.Format("{0} WON!", winner);
+            }
+
+            prompt.Append(msg);
+            msg = string.Format(
+                "{2}{0} with {1} pairs revealed.{2}{3} with {4} pairs revealed.",
+                m_Game.Player1Name(),
+                m_Game.Player1Score(),
+                Environment.NewLine,
+                m_Game.Player2Name(),
+                m_Game.Player2Score());
+            prompt.Append(msg);
+
+            m_GameOver = new GameOver(prompt.ToString());
         }
     }
 }

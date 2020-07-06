@@ -17,11 +17,14 @@ using System.Threading;
 
  namespace B20_Ex05
 {
+
+    public delegate void PairFoundInvoker(int i_row1, int i_col1, int i_row2, int i_col2,bool i_Found);
     public class Game             
     {
         private Player m_Player1;
         private Player m_Player2;
         private Board m_GameBoard;
+        public event PairFoundInvoker PairWasFound;
 
         public Game(string i_Name1, string i_Name2, bool i_Pvc, int i_Row, int i_Col)
         {
@@ -104,14 +107,17 @@ using System.Threading;
             if (m_GameBoard.CheckPair(i_Row1, i_Col1, i_Row2, i_Col2))
             { // Case found pair
                 currentPlayer.Pairs++;
-                m_GameBoard.PairFound();                
+                m_GameBoard.PairFound(); 
+                //INVOKE.PAIRFOUND(ROW1 CO1 ROW 2 COL2)
             }
             else
             {
-                Thread.Sleep(2000);
+                //Thread.Sleep(2000);
                 unrevealed(i_Row1, i_Col1, i_Row2, i_Col2);
                 changePlayer = true;
+                //INVOKE.notPAIRFOUND(ROW1 CO1 ROW 2 COL2)
             }
+            
 
             if (changePlayer)
             { // Case not found a pair              
@@ -126,6 +132,11 @@ using System.Threading;
                 }
 
                 io_TurnPlayer1 = !io_TurnPlayer1;
+            }
+
+            if (PairWasFound != null)
+            {
+                PairWasFound.Invoke(i_Row1, i_Col1, i_Row2, i_Col2, !changePlayer);
             }
         }
 
