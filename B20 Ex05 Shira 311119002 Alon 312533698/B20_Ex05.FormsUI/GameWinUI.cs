@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.Policy;
 using System.Runtime.Remoting.Messaging;
+using System.Windows.Forms.VisualStyles;
 
 namespace B20_Ex05.FormsUI
 {
@@ -209,15 +210,30 @@ namespace B20_Ex05.FormsUI
 
         private void changeText(int o_Row, int o_Col, object i_Sender)
         {
-            char sign = (char)m_Game.GetIndexAtBoard(o_Row, o_Col);
-            sign += 'A';
-            (i_Sender as Button).Text = sign.ToString();
+            //char sign = (char)m_Game.GetIndexAtBoard(o_Row, o_Col);
+            //sign += 'A';           
+            // (i_Sender as Button).Text = sign.ToString();
+            
+
+            int index = m_Game.GetIndexAtBoard(o_Row, o_Col);
+            PictureBox image = new PictureBox();
+            image.Load(m_picture[index-1]);
+            //image.SizeMode = PictureBoxSizeMode.AutoSize;    
+            
+            (i_Sender as Button).BackgroundImage = image.Image;
+            (i_Sender as Button).BackgroundImage = new Bitmap((i_Sender as Button).BackgroundImage, new Size((i_Sender as Button).Width, (i_Sender as Button).Height));
+
+
         }
 
         private void resetButton(object i_Sender)
         {
             (i_Sender as Button).ResetText();
             (i_Sender as Button).BackColor = Color.LightGray;
+            
+
+            //add
+            (i_Sender as Button).BackgroundImage = null;
             (i_Sender as Button).Refresh();
         }
 
