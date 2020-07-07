@@ -19,12 +19,15 @@ using System.Threading;
 {
 
     public delegate void PairFoundInvoker(int i_row1, int i_col1, int i_row2, int i_col2,bool i_Found);
+    public delegate void RevealInvoker(int i_row, int i_col);
+
     public class Game             
     {
         private Player m_Player1;
         private Player m_Player2;
         private Board m_GameBoard;
         public event PairFoundInvoker PairWasFound;
+        public event RevealInvoker Reveal;
 
         public Game(string i_Name1, string i_Name2, bool i_Pvc, int i_Row, int i_Col)
         {
@@ -72,6 +75,11 @@ using System.Threading;
         {
             m_GameBoard.Expose(i_Row, i_Col);
 
+            if (Reveal != null)
+            {
+                Reveal.Invoke(i_Row, i_Col);
+            }
+
             if (m_Player2.Pc && !i_TurnPlayer1) 
             { // Case this is turn of player 2 and it is AI -> need to update memeory of AI.
                 m_Player2.m_PlayerVsComputer.UpdateMemory(i_Row, i_Col, m_GameBoard.m_Board[i_Row, i_Col].Value);
@@ -81,6 +89,12 @@ using System.Threading;
         public void SecondReveal(int i_Row, int i_Col)
         {
             m_GameBoard.Expose(i_Row, i_Col);
+
+
+            if (Reveal != null)
+            {
+                Reveal.Invoke(i_Row, i_Col);
+            }
         }
 
         public void GetInputFromAI(ref int io_Row, ref int io_Col)

@@ -17,14 +17,11 @@ namespace B20_Ex05.FormsUI
 {
     class GameWinUI
     {
-        //internal event StartInvoker StartClicked;
-
         WelcomPage m_FormSetting = new WelcomPage();
         GameForm m_GameForm;
         Game m_Game;
-        bool m_SecondClick = false; //when click on square this go to true, after second click it invoke pairinvoker
+        bool m_SecondClick = false; 
         private string[] m_picture;
-
         bool m_IsPlayer1Turn = true;
         int m_FirstCol;
         int m_FirstRow;
@@ -69,6 +66,8 @@ namespace B20_Ex05.FormsUI
         {
             m_Game = new Game(o_Name1, o_Name2, o_Pvc, o_Row, o_Col);
             m_Game.PairWasFound += PairFound;
+            m_Game.Reveal += Reveal;
+
             m_GameForm = new GameForm(o_Col, o_Row, o_Name1, o_Name2);
             makePictures((o_Row*o_Col)/2);
         }
@@ -100,8 +99,8 @@ namespace B20_Ex05.FormsUI
         internal bool OnClick(int io_Row, int io_Col, object io_Sender)
         {
 
-            changeText(io_Row, io_Col, io_Sender);
-            changeColor(io_Sender);
+            //changeText(io_Row, io_Col, io_Sender);
+            //changeColor(io_Sender);
 
             if (!m_SecondClick)
             {
@@ -124,26 +123,13 @@ namespace B20_Ex05.FormsUI
             // update board........
             if ((!m_Game.IsGameOver()) && !m_IsPlayer1Turn && m_Game.IsAIPlay()) 
             {
-                //m_GameForm.PairWasChosen -= OnClick;
-                // m_GameForm.PairWasChosen += OnAIClick;
-                // m_GameForm.Enabled = false;
-                //m_GameForm.Refresh();
-                //foreach (Control item in m_GameForm.Controls)
-                //{
-                //    item.Enabled = false;      // = true: enable all, = false: disable all
-                //}     
-                
-                
+                m_GameForm.Enabled = false;
+                m_GameForm.Refresh();
+                Cursor.Current = Cursors.WaitCursor;
                 playAI();
-                
-               // m_GameForm.PairWasChosen -= OnAIClick;
-                //m_GameForm.PairWasChosen += OnClick;
-                //m_GameForm.Enabled = true;
-                //m_GameForm.Refresh();
-                //foreach (Control item in m_GameForm.Controls)
-                //{
-                //    item.Enabled = true;      // = true: enable all, = false: disable all
-                //}
+                m_GameForm.Enabled = true;
+                m_GameForm.Refresh();
+                Cursor.Current = Cursors.Default;
 
             }
 
@@ -168,8 +154,8 @@ namespace B20_Ex05.FormsUI
                 m_Game.FirstReveal(m_FirstRow, m_FirstCol, m_IsPlayer1Turn);
                 FirstButton = m_GameForm.Buttons[m_FirstRow, m_FirstCol];
 
-                changeColor(FirstButton);
-                changeText(m_FirstRow, m_FirstCol, FirstButton);
+                //changeColor(FirstButton);
+                //changeText(m_FirstRow, m_FirstCol, FirstButton);
                 FirstButton.Refresh();
 
                 
@@ -179,8 +165,8 @@ namespace B20_Ex05.FormsUI
                 m_Game.SecondReveal(row, col);                
                 SecondButton = m_GameForm.Buttons[row, col];
 
-                changeColor(SecondButton);
-                changeText(row, col, SecondButton);
+                //changeColor(SecondButton);
+               // changeText(row, col, SecondButton);
                 SecondButton.Refresh();
 
                 m_Game.CheckTurn(m_FirstRow, m_FirstCol, row, col, ref m_IsPlayer1Turn);                
@@ -196,35 +182,37 @@ namespace B20_Ex05.FormsUI
             return true;
         }
 
-        private void changeColor(object i_Sender)
-        {
-            if (m_IsPlayer1Turn)
-            {
-                (i_Sender as Button).BackColor = m_GameForm.Player1Color;
-            }
-            else
-            {
-                (i_Sender as Button).BackColor = m_GameForm.Player2Color;
-            }
-        }
+        //private void changeColor(object i_Sender)
+        //{
+        //    if (m_IsPlayer1Turn)
+        //    {
+        //        (i_Sender as Button).BackColor = m_GameForm.Player1Color;
+                
+        //    }
+        //    else
+        //    {
+        //        (i_Sender as Button).BackColor = m_GameForm.Player2Color;
+        //    }
+        //}
 
-        private void changeText(int o_Row, int o_Col, object i_Sender)
-        {
-            //char sign = (char)m_Game.GetIndexAtBoard(o_Row, o_Col);
-            //sign += 'A';           
-            // (i_Sender as Button).Text = sign.ToString();
+        //private void changeText(int o_Row, int o_Col, object i_Sender)
+        //{
+        //    //char sign = (char)m_Game.GetIndexAtBoard(o_Row, o_Col);
+        //    //sign += 'A';           
+        //    // (i_Sender as Button).Text = sign.ToString();
             
 
-            int index = m_Game.GetIndexAtBoard(o_Row, o_Col);
-            PictureBox image = new PictureBox();
-            image.Load(m_picture[index-1]);
-            //image.SizeMode = PictureBoxSizeMode.AutoSize;    
+        //    int index = m_Game.GetIndexAtBoard(o_Row, o_Col);
+        //    PictureBox image = new PictureBox();
+        //    image.Load(m_picture[index-1]);
+        //    //image.SizeMode = PictureBoxSizeMode.AutoSize;    
             
-            (i_Sender as Button).BackgroundImage = image.Image;
-            (i_Sender as Button).BackgroundImage = new Bitmap((i_Sender as Button).BackgroundImage, new Size((i_Sender as Button).Width, (i_Sender as Button).Height));
+        //    (i_Sender as Button).BackgroundImage = image.Image;
+        //    (i_Sender as Button).BackgroundImageLayout = ImageLayout.Center;
+        //    //  (i_Sender as Button).BackgroundImage = new Bitmap((i_Sender as Button).BackgroundImage, new Size((i_Sender as Button).Width, (i_Sender as Button).Height));
 
 
-        }
+        //}
 
         private void resetButton(object i_Sender)
         {
@@ -236,6 +224,32 @@ namespace B20_Ex05.FormsUI
             (i_Sender as Button).BackgroundImage = null;
             (i_Sender as Button).Refresh();
         }
+
+        public void Reveal(int io_Row, int io_Col)
+        {
+            Button currButton = m_GameForm.Buttons[io_Row, io_Col];
+            int index = m_Game.GetIndexAtBoard(io_Row, io_Col);
+
+            PictureBox image = new PictureBox();
+            image.Load(m_picture[index - 1]);
+
+            currButton.BackgroundImage = image.Image;
+            currButton.BackgroundImageLayout = ImageLayout.Center;
+
+
+            if (m_IsPlayer1Turn)
+            {
+                currButton.BackColor = m_GameForm.Player1Color;
+
+            }
+            else
+            {
+                currButton.BackColor = m_GameForm.Player2Color;
+            }
+
+            currButton.Refresh();
+        }
+            
 
         public void PairFound(int i_Row1, int i_Col1, int i_Row2, int i_Col2, bool i_Found)
         {

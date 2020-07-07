@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -56,6 +57,7 @@ namespace B20_Ex05.FormsUI
         {
             m_player1Pairs++;
             m_Player1Label.Text=String.Format("{0}: {1} Pair(s)", Player1Name, m_player1Pairs);
+            m_Player1Label.Refresh();
         }
 
         internal Color Player1Color 
@@ -72,6 +74,7 @@ namespace B20_Ex05.FormsUI
         {
             m_player2Pairs++;
             m_Player2Label.Text = String.Format("{0}: {1} Pair(s)", Player2Name, m_player2Pairs);
+            m_Player2Label.Refresh();
         }
 
         internal void ChangeCurrentPlayer(string PlayerName)
@@ -128,20 +131,24 @@ namespace B20_Ex05.FormsUI
         }
 
         private void tileButton_Click(object sender, EventArgs e)
-        {            
-            if (sender is Button)
+        {
+            if (this.Enabled)
             {
-                if ((sender as Button).BackColor == Color.LightGray)
+                if (sender is Button)
                 {
-                    int row = int.Parse((sender as Button).Name[0].ToString());
-                    int col = int.Parse((sender as Button).Name[2].ToString());
-
-                    if (PairWasChosen != null)
+                    if ((sender as Button).BackColor == Color.LightGray)
                     {
-                        if (PairWasChosen.Invoke(row, col, sender))
-                        { // game over
-                            this.DialogResult = DialogResult.OK;
-                            this.Close();
+                        int row = int.Parse((sender as Button).Name[0].ToString());
+                        int col = int.Parse((sender as Button).Name[2].ToString());
+
+                        if (PairWasChosen != null)
+                        {
+                            if (PairWasChosen.Invoke(row, col, sender))
+                            { // game over
+                                this.DialogResult = DialogResult.OK;
+                                Thread.Sleep(2000);
+                                this.Close();
+                            }
                         }
                     }
                 }

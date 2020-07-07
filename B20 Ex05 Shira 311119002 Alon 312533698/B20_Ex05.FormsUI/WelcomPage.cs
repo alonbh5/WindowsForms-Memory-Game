@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,7 +41,8 @@ namespace B20_Ex05.FormsUI
 
         public WelcomPage()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            this.FormClosed += WelcomPage_FormClosing;
         }
 
         internal string Player1Name
@@ -50,7 +52,7 @@ namespace B20_Ex05.FormsUI
 
         internal string Player2Name
         {
-            get { return Player2NameTextBox.Text; }
+            get { return Player2NameTextBox.Text; }            
         }
 
         private void PVPButton_Click(object sender, EventArgs e)
@@ -77,12 +79,13 @@ namespace B20_Ex05.FormsUI
             if (Player1NameTextBox.Text == string.Empty)
             {
                 MessageBox.Show("Please Enter Player 1 Name");
+                
             }
             else
             {
                 if (Player2NameTextBox.Text == string.Empty)
                 {
-                    MessageBox.Show("Please Enter Player 2 Name");
+                    ; MessageBox.Show("Please Enter Player 2 Name");                    
                 }
 
                 else
@@ -90,6 +93,7 @@ namespace B20_Ex05.FormsUI
                     if (StartClicked != null)
                     {
                         StartClicked.Invoke(Player1Name, Player2Name, m_PvC, m_BoardRow, m_BoardCol);
+                        this.FormClosed -= WelcomPage_FormClosing;
                         this.Close();
                     }
                 }
@@ -146,5 +150,24 @@ namespace B20_Ex05.FormsUI
                     break;
             }
         }
-    }
+
+        private void WelcomPage_FormClosing(object sender, FormClosedEventArgs e)
+        {
+            if(e.CloseReason == CloseReason.UserClosing)
+            {
+                if (Player1NameTextBox.Text == string.Empty)
+                {
+                    Player1NameTextBox.Text = "Player 1";
+                }
+
+                if (Player2NameTextBox.Text == string.Empty)
+                {
+                    Player2NameTextBox.Text = "Player 2";
+                }
+
+                StartButton_Click(sender, e);
+            }
+            
+        }
+    }    
 }
