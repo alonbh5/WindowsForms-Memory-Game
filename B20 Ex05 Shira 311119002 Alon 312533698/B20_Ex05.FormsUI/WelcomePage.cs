@@ -12,7 +12,7 @@ namespace B20_Ex05.FormsUI
         FiveBySix,
         SixByFour,
         SixByFive,
-        SixBySix // 7
+        SixBySix 
     }
 
     public delegate void StartInvoker(string i_Name1, string i_Name2, bool i_Pvc, int i_NumOfRows, int i_NumOfCols);    
@@ -26,52 +26,52 @@ namespace B20_Ex05.FormsUI
         private eBoardSize m_BoardSize = 0;
         private int m_BoardCol = 4;
         private int m_BoardRow = 4;
-        private int m_choice = 0;
+        private int m_Choice = 0;
         private bool m_PvC = true;
 
         public WelcomePage()
         {
             InitializeComponent();
-            this.FormClosed += WelcomePage_FormClosing;
+            this.FormClosed += welcomePage_FormClosing;
         }
 
         internal string Player1Name
         {
-            get { return Player1NameTextBox.Text; }
+            get { return m_Player1NameTextBox.Text; }
         }
 
         internal string Player2Name
         {
-            get { return Player2NameTextBox.Text; }            
+            get { return m_Player2NameTextBox.Text; }            
         }
 
-        private void PVPButton_Click(object sender, EventArgs e)
+        private void pvpButton_Click(object sender, EventArgs e)
         {
             m_PvC = !m_PvC;
 
             if (m_PvC)
             {
-                PVPButton.Text = "Aginst a Friend";
-                Player2NameTextBox.Enabled = false;
-                Player2NameTextBox.Text = "-Computer-";
+                m_PVPButton.Text = "Against a Friend";
+                m_Player2NameTextBox.Enabled = false;
+                m_Player2NameTextBox.Text = "-Computer-";
             }
             else
             {
-                PVPButton.Text = "Aginst Computer";
-                Player2NameTextBox.Enabled = true;
-                Player2NameTextBox.Text = string.Empty;
+                m_PVPButton.Text = "Against Computer";
+                m_Player2NameTextBox.Enabled = true;
+                m_Player2NameTextBox.Text = string.Empty;
             }
         }
 
-        private void StartButton_Click(object sender, EventArgs e)
+        private void startButton_Click(object sender, EventArgs e)
         {
-            if (Player1NameTextBox.Text == string.Empty)
+            if (m_Player1NameTextBox.Text == string.Empty)
             {
                 MessageBox.Show("Please Enter Player 1 Name");                
             }
             else
             {
-                if (Player2NameTextBox.Text == string.Empty)
+                if (m_Player2NameTextBox.Text == string.Empty)
                 {
                      MessageBox.Show("Please Enter Player 2 Name");                    
                 }
@@ -80,79 +80,79 @@ namespace B20_Ex05.FormsUI
                     if (StartClicked != null)
                     {
                         StartClicked.Invoke(Player1Name, Player2Name, m_PvC, m_BoardRow, m_BoardCol);
-                        this.FormClosed -= WelcomePage_FormClosing;
+                        this.FormClosed -= welcomePage_FormClosing;
                         this.Close();
                     }
                 }
             }
         }
 
-        private void BoardSizeButton_Click(object sender, EventArgs e)
+        private void boardSizeButton_Click(object sender, EventArgs e)
         {
-            m_choice++;
-            m_choice = m_choice % k_NumOfBoardSizes;
-            m_BoardSize = (eBoardSize)m_choice;
+            m_Choice++;
+            m_Choice = m_Choice % k_NumOfBoardSizes;
+            m_BoardSize = (eBoardSize)m_Choice;
 
             switch (m_BoardSize)
             {
                 case eBoardSize.FourbyFour:
-                    BoardSizeButton.Text = "4x4";
+                    m_boardSizeButton.Text = "4x4";
                     m_BoardCol = 4;
                     m_BoardRow = 4;
                     break;
                 case eBoardSize.FourByFive:
-                    BoardSizeButton.Text = "4x5";
+                    m_boardSizeButton.Text = "4x5";
                     m_BoardCol = 4;
                     m_BoardRow = 5;
                     break;
                 case eBoardSize.FourBySix:
-                    BoardSizeButton.Text = "4x6";
+                    m_boardSizeButton.Text = "4x6";
                     m_BoardCol = 4;
                     m_BoardRow = 6;
                     break;
                 case eBoardSize.FiveByFour:
-                    BoardSizeButton.Text = "5x4";
+                    m_boardSizeButton.Text = "5x4";
                     m_BoardCol = 5;
                     m_BoardRow = 4;
                     break;
                 case eBoardSize.FiveBySix:
-                    BoardSizeButton.Text = "5x6";
+                    m_boardSizeButton.Text = "5x6";
                     m_BoardCol = 5;
                     m_BoardRow = 6;
                     break;
                 case eBoardSize.SixByFour:
-                    BoardSizeButton.Text = "6x4";
+                    m_boardSizeButton.Text = "6x4";
                     m_BoardCol = 6;
                     m_BoardRow = 4;
                     break;
                 case eBoardSize.SixByFive:
-                    BoardSizeButton.Text = "6x5";
+                    m_boardSizeButton.Text = "6x5";
                     m_BoardCol = 6;
                     m_BoardRow = 5;
                     break;
                 case eBoardSize.SixBySix:
-                    BoardSizeButton.Text = "6x6";
+                    m_boardSizeButton.Text = "6x6";
                     m_BoardCol = 6;
                     m_BoardRow = 6;
                     break;
             }
         }
 
-        private void WelcomePage_FormClosing(object sender, FormClosedEventArgs e)
+        private void welcomePage_FormClosing(object sender, FormClosedEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing) 
             {
-                if (Player1NameTextBox.Text == string.Empty)
+                if (m_Player1NameTextBox.Text == string.Empty)
                 {
-                    Player1NameTextBox.Text = "Player 1";
+                    m_Player1NameTextBox.Text = "Player 1";
                 }
 
-                if (Player2NameTextBox.Text == string.Empty)
+                if (m_Player2NameTextBox.Text == string.Empty)
                 {
-                    Player2NameTextBox.Text = "Player 2";
+                    m_Player2NameTextBox.Text = "Player 2";
                 }
 
-                StartButton_Click(sender, e);
+                startButton_Click(sender, e);
             }            
         }
     }    

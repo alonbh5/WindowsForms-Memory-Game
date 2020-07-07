@@ -29,35 +29,35 @@ namespace B20_Ex05.FormsUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.Player2NameTextBox = new System.Windows.Forms.TextBox();
-            this.StartButton = new System.Windows.Forms.Button();
+            this.m_Player2NameTextBox = new System.Windows.Forms.TextBox();
+            this.m_StartButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.Player1NameTextBox = new System.Windows.Forms.TextBox();
-            this.PVPButton = new System.Windows.Forms.Button();
-            this.BoardSizeButton = new System.Windows.Forms.Button();
+            this.m_Player1NameTextBox = new System.Windows.Forms.TextBox();
+            this.m_PVPButton = new System.Windows.Forms.Button();
+            this.m_boardSizeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // Player2NameTextBox
+            // m_Player2NameTextBox
             // 
-            this.Player2NameTextBox.Location = new System.Drawing.Point(141, 46);
-            this.Player2NameTextBox.Name = "Player2NameTextBox";
-            this.Player2NameTextBox.Size = new System.Drawing.Size(132, 20);
-            this.Player2NameTextBox.TabIndex = 1;
-            this.Player2NameTextBox.Enabled = false;
-            this.Player2NameTextBox.Text = "-Computer-";
+            this.m_Player2NameTextBox.Enabled = false;
+            this.m_Player2NameTextBox.Location = new System.Drawing.Point(141, 46);
+            this.m_Player2NameTextBox.Name = "m_Player2NameTextBox";
+            this.m_Player2NameTextBox.Size = new System.Drawing.Size(132, 20);
+            this.m_Player2NameTextBox.TabIndex = 1;
+            this.m_Player2NameTextBox.Text = "-Computer-";
             // 
-            // StartButton
+            // m_StartButton
             // 
-            this.StartButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.StartButton.Location = new System.Drawing.Point(329, 155);
-            this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(75, 23);
-            this.StartButton.TabIndex = 4;
-            this.StartButton.Text = "Start!";
-            this.StartButton.UseVisualStyleBackColor = false;
-            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
+            this.m_StartButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.m_StartButton.Location = new System.Drawing.Point(329, 155);
+            this.m_StartButton.Name = "m_StartButton";
+            this.m_StartButton.Size = new System.Drawing.Size(75, 23);
+            this.m_StartButton.TabIndex = 4;
+            this.m_StartButton.Text = "Start!";
+            this.m_StartButton.UseVisualStyleBackColor = false;
+            this.m_StartButton.Click += new System.EventHandler(this.startButton_Click);
             // 
             // label1
             // 
@@ -86,47 +86,47 @@ namespace B20_Ex05.FormsUI
             this.label3.TabIndex = 7;
             this.label3.Text = "First Player Name:";
             // 
-            // Player1NameTextBox
+            // m_Player1NameTextBox
             // 
-            this.Player1NameTextBox.Location = new System.Drawing.Point(141, 19);
-            this.Player1NameTextBox.Name = "Player1NameTextBox";
-            this.Player1NameTextBox.Size = new System.Drawing.Size(132, 20);
-            this.Player1NameTextBox.TabIndex = 0;
+            this.m_Player1NameTextBox.Location = new System.Drawing.Point(141, 19);
+            this.m_Player1NameTextBox.Name = "m_Player1NameTextBox";
+            this.m_Player1NameTextBox.Size = new System.Drawing.Size(132, 20);
+            this.m_Player1NameTextBox.TabIndex = 0;
             // 
-            // PVPButton
+            // m_PVPButton
             // 
-            this.PVPButton.Location = new System.Drawing.Point(279, 46);
-            this.PVPButton.Name = "PVPButton";
-            this.PVPButton.Size = new System.Drawing.Size(125, 20);
-            this.PVPButton.TabIndex = 2;
-            this.PVPButton.Text = "Aginst A Friend";
-            this.PVPButton.UseVisualStyleBackColor = true;
-            this.PVPButton.Click += new System.EventHandler(this.PVPButton_Click);
+            this.m_PVPButton.Location = new System.Drawing.Point(279, 46);
+            this.m_PVPButton.Name = "m_PVPButton";
+            this.m_PVPButton.Size = new System.Drawing.Size(125, 20);
+            this.m_PVPButton.TabIndex = 2;
+            this.m_PVPButton.Text = "Aginst A Friend";
+            this.m_PVPButton.UseVisualStyleBackColor = true;
+            this.m_PVPButton.Click += new System.EventHandler(this.pvpButton_Click);
             // 
-            // BoardSizeButton
+            // m_boardSizeButton
             // 
-            this.BoardSizeButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.BoardSizeButton.Location = new System.Drawing.Point(12, 107);
-            this.BoardSizeButton.Name = "BoardSizeButton";
-            this.BoardSizeButton.Size = new System.Drawing.Size(126, 71);
-            this.BoardSizeButton.TabIndex = 3;
-            this.BoardSizeButton.Text = "4x4";
-            this.BoardSizeButton.UseVisualStyleBackColor = false;
-            this.BoardSizeButton.Click += new System.EventHandler(this.BoardSizeButton_Click);
+            this.m_boardSizeButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.m_boardSizeButton.Location = new System.Drawing.Point(12, 107);
+            this.m_boardSizeButton.Name = "m_boardSizeButton";
+            this.m_boardSizeButton.Size = new System.Drawing.Size(126, 71);
+            this.m_boardSizeButton.TabIndex = 3;
+            this.m_boardSizeButton.Text = "4x4";
+            this.m_boardSizeButton.UseVisualStyleBackColor = false;
+            this.m_boardSizeButton.Click += new System.EventHandler(this.boardSizeButton_Click);
             // 
-            // WelcomPage
+            // WelcomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(418, 193);
-            this.Controls.Add(this.BoardSizeButton);
-            this.Controls.Add(this.PVPButton);
-            this.Controls.Add(this.Player1NameTextBox);
+            this.Controls.Add(this.m_boardSizeButton);
+            this.Controls.Add(this.m_PVPButton);
+            this.Controls.Add(this.m_Player1NameTextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.StartButton);
-            this.Controls.Add(this.Player2NameTextBox);
+            this.Controls.Add(this.m_StartButton);
+            this.Controls.Add(this.m_Player2NameTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -136,17 +136,18 @@ namespace B20_Ex05.FormsUI
             this.Text = "Memory Game - Setting";
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox Player2NameTextBox;
-        private System.Windows.Forms.Button StartButton;
+        private System.Windows.Forms.TextBox m_Player2NameTextBox;
+        private System.Windows.Forms.Button m_StartButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox Player1NameTextBox;
-        private System.Windows.Forms.Button PVPButton;
-        private System.Windows.Forms.Button BoardSizeButton;
+        private System.Windows.Forms.TextBox m_Player1NameTextBox;
+        private System.Windows.Forms.Button m_PVPButton;
+        private System.Windows.Forms.Button m_boardSizeButton;
     }
 }

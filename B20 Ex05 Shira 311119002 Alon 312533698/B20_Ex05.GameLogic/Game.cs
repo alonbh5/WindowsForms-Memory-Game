@@ -1,5 +1,5 @@
 using System.Text;
-using System.Threading;
+using System;
 
 //// To Play Game:
 //// 1. Create New Game Object 
@@ -23,6 +23,8 @@ using System.Threading;
 
     public class Game             
     {
+        internal static Random s_Random = new Random();
+
         private Player m_Player1;
         private Player m_Player2;
         private Board m_GameBoard;

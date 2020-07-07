@@ -22,29 +22,26 @@ namespace B20_Ex05.FormsUI
 
         public GameWinUI()
         {
-            DialogResult Result;
-            bool Play = true;
+            DialogResult result;
+            bool play = true;
 
             m_FormSetting.StartClicked += OnStartClick;
             m_FormSetting.ShowDialog();
 
-            while (Play && m_GameForm != null)
+            while (play && m_GameForm != null)
             {
                 m_GameForm.PairWasChosen += OnClick;
-                Result = m_GameForm.ShowDialog();
+                result = m_GameForm.ShowDialog();
 
-                if (Result == DialogResult.OK)
+                if (result == DialogResult.OK)
                 {
                     gameOver();
-                    Result = m_GameOver.ShowDialog();
-                    if (Result == DialogResult.No)
-                    {
-                        Play = false;
-                    }                    
+                    result = m_GameOver.ShowDialog();                   
                 }
-                else
+
+                if (result == DialogResult.Cancel)
                 {
-                    Play = false;
+                    play = false;
                 }
             }
         }
@@ -52,10 +49,9 @@ namespace B20_Ex05.FormsUI
         internal void OnStartClick(string o_Name1, string o_Name2, bool o_Pvc, int o_Row, int o_Col)
         {
             m_Game = new Game(o_Name1, o_Name2, o_Pvc, o_Row, o_Col);
-            m_Game.PairWasFound += PairFound;
-            m_Game.Reveal += Reveal;
-
             m_GameForm = new GameForm(o_Col, o_Row, o_Name1, o_Name2);
+            m_Game.PairWasFound += OnPairFound;
+            m_Game.Reveal += OnReveal;            
             makePictures((o_Row * o_Col) / 2);
         }
 
@@ -79,10 +75,9 @@ namespace B20_Ex05.FormsUI
                 m_SecondClick = false;
                 m_Game.SecondReveal(io_Row, io_Col);
                 m_SecondButton = io_Sender as Button;
-                m_Game.CheckTurn(m_FirstRow, m_FirstCol, io_Row, io_Col, ref m_IsPlayer1Turn); // add delgeage?                 
+                m_Game.CheckTurn(m_FirstRow, m_FirstCol, io_Row, io_Col, ref m_IsPlayer1Turn);           
             }
-
-            // update board........
+            
             if ((!m_Game.IsGameOver()) && !m_IsPlayer1Turn && m_Game.IsAIPlay()) 
             {
                 m_GameForm.Enabled = false;
@@ -90,6 +85,7 @@ namespace B20_Ex05.FormsUI
                 m_GameForm.Refresh();
                 
                 playAI();
+
                 m_GameForm.Enabled = true;
                 m_GameForm.Refresh();
                 Cursor.Current = Cursors.Default;
@@ -116,24 +112,17 @@ namespace B20_Ex05.FormsUI
                 m_SecondButton = m_GameForm.Buttons[row, col];
 
                 m_Game.CheckTurn(m_FirstRow, m_FirstCol, row, col, ref m_IsPlayer1Turn);                
-            }
-
-            if (!m_Game.IsGameOver())
-            {
-                // reset to last turn of AI - if got here then last pair reveled was wrong and not end of game
-                resetButton(m_FirstButton);
-                resetButton(m_SecondButton);                
-            }            
+            }           
         }
 
-        private void resetButton(object i_Sender)
+        private void resetButton(Button i_Button)
         {
-            (i_Sender as Button).BackColor = Color.LightGray;            
-            (i_Sender as Button).BackgroundImage = null;
-            (i_Sender as Button).Refresh();
+            i_Button.BackColor = Color.LightGray;
+            i_Button.BackgroundImage = null;
+            i_Button.Refresh();
         }
 
-        public void Reveal(int io_Row, int io_Col)
+        internal void OnReveal(int io_Row, int io_Col)
         {
             Button currButton = m_GameForm.Buttons[io_Row, io_Col];
             int index = m_Game.GetIndexAtBoard(io_Row, io_Col);
@@ -156,9 +145,9 @@ namespace B20_Ex05.FormsUI
             currButton.Refresh();
         }
 
-        public void PairFound(bool i_Found)
+        internal void OnPairFound(bool i_FoundPair)
         {
-            if (i_Found)
+            if (i_FoundPair)
             {                
                 if (m_IsPlayer1Turn)
                 {

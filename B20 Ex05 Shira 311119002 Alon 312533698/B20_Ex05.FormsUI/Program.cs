@@ -6,8 +6,8 @@ namespace B20_Ex05.FormsUI
     {
         public static void Main()
         {              
-            Application.EnableVisualStyles();
-            GameWinUI NewGame = new GameWinUI();            
+            Application.EnableVisualStyles();            
+            GameWinUI newGame = new GameWinUI();            
         }
     }
 }

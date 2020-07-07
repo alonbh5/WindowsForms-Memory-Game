@@ -10,7 +10,7 @@ namespace B20_Ex05
         private readonly int r_Cols;
         private readonly int r_TotalPairs;
         private int m_ExposesPairs;
-        Random m_Random = new Random();
+        
 
         internal Board(int i_Rows, int i_Cols)
         {
@@ -49,7 +49,7 @@ namespace B20_Ex05
             {
                 do
                 {
-                    loc1 = m_Random.Next(maxRnd);
+                    loc1 = Game.s_Random.Next(maxRnd);
                 }
                 while (!intToLocation(loc1, ref row, ref col));
 
@@ -57,7 +57,7 @@ namespace B20_Ex05
 
                 do
                 {
-                    loc2 = m_Random.Next(maxRnd);
+                    loc2 = Game.s_Random.Next(maxRnd);
                 }
                 while (!intToLocation(loc2, ref row, ref col));
 

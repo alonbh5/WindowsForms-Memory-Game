@@ -35,7 +35,7 @@ namespace B20_Ex05
         private bool m_DoSmartChoice = false;
         private int m_PairsInMem = 0;
         private int m_IndexToAdd = 0;
-        Random m_Random = new Random();
+        
 
         public void PlayTurn(ref int io_Row, ref int io_Col, Board i_Gameboard)
         {
@@ -195,7 +195,7 @@ namespace B20_Ex05
 
             do
             {
-                loc = m_Random.Next(maxRnd);
+                loc = Game.s_Random.Next(maxRnd);
             }
             while (checkRandomLocation(loc, ref io_Row, ref io_Col, i_Gameboard));
         }
