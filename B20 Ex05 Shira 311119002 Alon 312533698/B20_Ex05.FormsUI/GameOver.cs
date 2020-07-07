@@ -10,8 +10,12 @@ using System.Windows.Forms;
 
 namespace B20_Ex05.FormsUI
 {
+    public delegate void PlayAgainInvoker();
+
     public partial class GameOver : Form
     {
+        internal event PlayAgainInvoker PlayAgainClicked;
+
         public GameOver(string i_Msg)
         {
             InitializeComponent();
@@ -22,6 +26,11 @@ namespace B20_Ex05.FormsUI
         {
             this.DialogResult = DialogResult.Yes;
             this.Close();
+
+            if (PlayAgainClicked != null)
+            {
+                PlayAgainClicked.Invoke();
+            }
         }
 
         private void Exit_Click(object sender, EventArgs e)

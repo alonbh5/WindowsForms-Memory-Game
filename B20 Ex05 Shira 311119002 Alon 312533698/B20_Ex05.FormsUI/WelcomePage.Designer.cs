@@ -1,6 +1,6 @@
 namespace B20_Ex05.FormsUI
 {
-    partial class WelcomPage
+    public partial class WelcomePage
     {
         /// <summary>
         /// Required designer variable.
@@ -17,6 +17,7 @@ namespace B20_Ex05.FormsUI
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 

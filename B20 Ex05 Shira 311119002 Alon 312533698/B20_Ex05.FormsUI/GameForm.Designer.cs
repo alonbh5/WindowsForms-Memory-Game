@@ -1,6 +1,6 @@
 ﻿namespace B20_Ex05.FormsUI
 {
-    partial class GameForm
+    public partial class GameForm
     {
         /// <summary>
         /// Required designer variable.
@@ -17,6 +17,7 @@
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 

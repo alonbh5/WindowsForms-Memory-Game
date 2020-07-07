@@ -1,6 +1,6 @@
 ﻿namespace B20_Ex05.FormsUI
 {
-    partial class GameOver
+    public partial class GameOver
     {
         /// <summary>
         /// Required designer variable.
@@ -17,6 +17,7 @@
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 

@@ -18,7 +18,7 @@ using System.Threading;
  namespace B20_Ex05
 {
 
-    public delegate void PairFoundInvoker(int i_row1, int i_col1, int i_row2, int i_col2,bool i_Found);
+    public delegate void PairFoundInvoker(bool i_Found);
     public delegate void RevealInvoker(int i_row, int i_col);
 
     public class Game             
@@ -150,7 +150,7 @@ using System.Threading;
 
             if (PairWasFound != null)
             {
-                PairWasFound.Invoke(i_Row1, i_Col1, i_Row2, i_Col2, !changePlayer);
+                PairWasFound.Invoke(!changePlayer);
             }
         }
 

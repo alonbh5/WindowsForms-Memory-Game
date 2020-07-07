@@ -1,19 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
 
 namespace B20_Ex05.FormsUI
 {
-    enum eBoardSize
+    internal enum eBoardSize
     {
         FourbyFour,
         FourByFive,
@@ -27,22 +17,22 @@ namespace B20_Ex05.FormsUI
 
     public delegate void StartInvoker(string i_Name1, string i_Name2, bool i_Pvc, int i_NumOfRows, int i_NumOfCols);    
 
-    public partial class WelcomPage : Form
+    public partial class WelcomePage : Form
     {
-        const int NumOfBoardSizes = 8;
-
         internal event StartInvoker StartClicked;
 
-        eBoardSize m_BoardSize = 0;
+        private const int k_NumOfBoardSizes = 8;        
+
+        private eBoardSize m_BoardSize = 0;
         private int m_BoardCol = 4;
         private int m_BoardRow = 4;
         private int m_choice = 0;
         private bool m_PvC = true;
 
-        public WelcomPage()
+        public WelcomePage()
         {
             InitializeComponent();
-            this.FormClosed += WelcomPage_FormClosing;
+            this.FormClosed += WelcomePage_FormClosing;
         }
 
         internal string Player1Name
@@ -71,29 +61,26 @@ namespace B20_Ex05.FormsUI
                 Player2NameTextBox.Enabled = true;
                 Player2NameTextBox.Text = string.Empty;
             }
-
         }
 
         private void StartButton_Click(object sender, EventArgs e)
         {
             if (Player1NameTextBox.Text == string.Empty)
             {
-                MessageBox.Show("Please Enter Player 1 Name");
-                
+                MessageBox.Show("Please Enter Player 1 Name");                
             }
             else
             {
                 if (Player2NameTextBox.Text == string.Empty)
                 {
-                    ; MessageBox.Show("Please Enter Player 2 Name");                    
+                     MessageBox.Show("Please Enter Player 2 Name");                    
                 }
-
                 else
                 {
                     if (StartClicked != null)
                     {
                         StartClicked.Invoke(Player1Name, Player2Name, m_PvC, m_BoardRow, m_BoardCol);
-                        this.FormClosed -= WelcomPage_FormClosing;
+                        this.FormClosed -= WelcomePage_FormClosing;
                         this.Close();
                     }
                 }
@@ -103,7 +90,7 @@ namespace B20_Ex05.FormsUI
         private void BoardSizeButton_Click(object sender, EventArgs e)
         {
             m_choice++;
-            m_choice = m_choice % NumOfBoardSizes;
+            m_choice = m_choice % k_NumOfBoardSizes;
             m_BoardSize = (eBoardSize)m_choice;
 
             switch (m_BoardSize)
@@ -151,9 +138,9 @@ namespace B20_Ex05.FormsUI
             }
         }
 
-        private void WelcomPage_FormClosing(object sender, FormClosedEventArgs e)
+        private void WelcomePage_FormClosing(object sender, FormClosedEventArgs e)
         {
-            if(e.CloseReason == CloseReason.UserClosing)
+            if (e.CloseReason == CloseReason.UserClosing) 
             {
                 if (Player1NameTextBox.Text == string.Empty)
                 {
@@ -166,8 +153,7 @@ namespace B20_Ex05.FormsUI
                 }
 
                 StartButton_Click(sender, e);
-            }
-            
+            }            
         }
     }    
 }

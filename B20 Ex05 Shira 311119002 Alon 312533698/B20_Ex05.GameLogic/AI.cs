@@ -35,7 +35,8 @@ namespace B20_Ex05
         private bool m_DoSmartChoice = false;
         private int m_PairsInMem = 0;
         private int m_IndexToAdd = 0;
-        
+        Random m_Random = new Random();
+
         public void PlayTurn(ref int io_Row, ref int io_Col, Board i_Gameboard)
         {
             //// Gets parameters and active gameboard 
@@ -129,8 +130,7 @@ namespace B20_Ex05
 
                         }
                             isFound = true;
-                            break;
-                        
+                            break;                        
                     }
                 }
 
@@ -189,14 +189,13 @@ namespace B20_Ex05
         {
             //// Gets col & row by ref, and gameboard (THAT IS STILL ACTIVE!)
             //// Return's by ref random row & col that haven't been reveled
-
-            Random rnd = new Random();
+            
             int loc = 0;
             int maxRnd = i_Gameboard.Cols * i_Gameboard.Rows;
 
             do
             {
-                loc = rnd.Next(maxRnd);
+                loc = m_Random.Next(maxRnd);
             }
             while (checkRandomLocation(loc, ref io_Row, ref io_Col, i_Gameboard));
         }
