@@ -123,17 +123,13 @@ using System;
             if (m_GameBoard.CheckPair(i_Row1, i_Col1, i_Row2, i_Col2))
             { // Case found pair
                 currentPlayer.Pairs++;
-                m_GameBoard.PairFound(); 
-                //INVOKE.PAIRFOUND(ROW1 CO1 ROW 2 COL2)
+                m_GameBoard.PairFound();
             }
             else
             {
-                //Thread.Sleep(2000);
                 unrevealed(i_Row1, i_Col1, i_Row2, i_Col2);
                 changePlayer = true;
-                //INVOKE.notPAIRFOUND(ROW1 CO1 ROW 2 COL2)
-            }
-            
+            }            
 
             if (changePlayer)
             { // Case not found a pair              

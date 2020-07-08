@@ -60,7 +60,7 @@ namespace B20_Ex05.FormsUI
             OnStartClick(m_Game.Player1Name(), m_Game.Player2Name(), m_Game.IsAIPlay(), m_Game.BoardRows(), m_Game.BoardCols());
         }      
 
-        internal bool OnClick(int io_Row, int io_Col, object io_Sender)
+        internal bool OnClick(int io_Row, int io_Col, object i_Sender)
         {
             if (!m_SecondClick)
             {
@@ -68,13 +68,13 @@ namespace B20_Ex05.FormsUI
                 m_Game.FirstReveal(io_Row, io_Col, m_IsPlayer1Turn);                
                 m_FirstRow = io_Row;
                 m_FirstCol = io_Col;
-                m_FirstButton = io_Sender as Button;
+                m_FirstButton = i_Sender as Button;
             }
             else 
             {
                 m_SecondClick = false;
                 m_Game.SecondReveal(io_Row, io_Col);
-                m_SecondButton = io_Sender as Button;
+                m_SecondButton = i_Sender as Button;
                 m_Game.CheckTurn(m_FirstRow, m_FirstCol, io_Row, io_Col, ref m_IsPlayer1Turn);           
             }
             
@@ -87,8 +87,8 @@ namespace B20_Ex05.FormsUI
                 playAI();
 
                 m_GameForm.Enabled = true;
-                m_GameForm.Refresh();
                 Cursor.Current = Cursors.Default;
+                m_GameForm.Refresh();
             }
 
             return m_Game.IsGameOver();
@@ -191,7 +191,7 @@ namespace B20_Ex05.FormsUI
 
             prompt.Append(msg);
             msg = string.Format(
-                "{2}{0} with {1} pairs revealed.{2}{3} with {4} pairs revealed.",
+                "{2}{0} with {1} pair(s) revealed.{2}{3} with {4} pair(s) revealed.",
                 m_Game.Player1Name(),
                 m_Game.Player1Score(),
                 Environment.NewLine,

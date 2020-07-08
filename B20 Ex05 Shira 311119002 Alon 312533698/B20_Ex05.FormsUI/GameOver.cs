@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 
 namespace B20_Ex05.FormsUI
@@ -15,7 +15,7 @@ namespace B20_Ex05.FormsUI
             this.m_ScoreLabel.Text = i_Msg;
         }
 
-        private void Again_Click(object sender, EventArgs e)
+        private void again_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Yes;
             this.Close();
@@ -26,7 +26,7 @@ namespace B20_Ex05.FormsUI
             }
         }
 
-        private void Exit_Click(object sender, EventArgs e)
+        private void exit_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();

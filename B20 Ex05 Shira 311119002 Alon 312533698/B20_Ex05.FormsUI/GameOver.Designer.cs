@@ -1,4 +1,4 @@
-﻿namespace B20_Ex05.FormsUI
+namespace B20_Ex05.FormsUI
 {
     public partial class GameOver
     {
@@ -57,7 +57,7 @@
             this.m_AgainButton.TabIndex = 0;
             this.m_AgainButton.Text = "Play Again!";
             this.m_AgainButton.UseVisualStyleBackColor = true;
-            this.m_AgainButton.Click += new System.EventHandler(this.Again_Click);
+            this.m_AgainButton.Click += new System.EventHandler(this.again_Click);
             // 
             // m_ExitButton
             // 
@@ -68,7 +68,7 @@
             this.m_ExitButton.TabIndex = 1;
             this.m_ExitButton.Text = "Exit";
             this.m_ExitButton.UseVisualStyleBackColor = true;
-            this.m_ExitButton.Click += new System.EventHandler(this.Exit_Click);
+            this.m_ExitButton.Click += new System.EventHandler(this.exit_Click);
             // 
             // m_QuestionLabel
             // 

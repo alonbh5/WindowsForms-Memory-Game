@@ -11,7 +11,7 @@ namespace B20_Ex05.FormsUI
     {
         internal event PairInvoker PairWasChosen;
 
-        internal Button[,] m_buttons;      
+        private Button[,] m_Buttons;      
         private int m_Player1Pairs = 0;
         private int m_Player2Pairs = 0;
         private string m_Player1Name;
@@ -43,7 +43,7 @@ namespace B20_Ex05.FormsUI
 
         internal Button[,] Buttons
         {
-            get { return m_buttons; }
+            get { return m_Buttons; }
         }
 
         internal void Player1FoundPair()
@@ -51,6 +51,13 @@ namespace B20_Ex05.FormsUI
             m_Player1Pairs++;
             m_Player1Label.Text = string.Format("{0}: {1} Pair(s)", Player1Name, m_Player1Pairs);
             m_Player1Label.Refresh();
+        }
+
+        internal void Player2FoundPair()
+        {
+            m_Player2Pairs++;
+            m_Player2Label.Text = string.Format("{0}: {1} Pair(s)", Player2Name, m_Player2Pairs);
+            m_Player2Label.Refresh();
         }
 
         internal Color Player1Color 
@@ -61,13 +68,6 @@ namespace B20_Ex05.FormsUI
         internal Color Player2Color
         {
             get { return m_Player2Label.BackColor; }
-        }
-
-        internal void Player2FoundPair() 
-        {
-            m_Player2Pairs++;
-            m_Player2Label.Text = string.Format("{0}: {1} Pair(s)", Player2Name, m_Player2Pairs);
-            m_Player2Label.Refresh();
         }
 
         internal void ChangeCurrentPlayer(string i_PlayerName)
@@ -87,7 +87,7 @@ namespace B20_Ex05.FormsUI
 
         private void createButtons(int i_Col, int i_Row)
         {
-            m_buttons = new Button[i_Row, i_Col];
+            m_Buttons = new Button[i_Row, i_Col];
             Button currButton;
             int xAxis = 25;
             int yAxis = 25;
@@ -100,8 +100,8 @@ namespace B20_Ex05.FormsUI
             {
                 for (int j = 0; j < i_Col; j++) 
                 {
-                    m_buttons[i, j] = new Button();                    
-                    currButton = m_buttons[i, j];
+                    m_Buttons[i, j] = new Button();                    
+                    currButton = m_Buttons[i, j];
                     currButton.AutoSize = true;
                     currButton.Location = new Point(xAxis, yAxis);
                     currButton.Size = new Size(100, 100);
