@@ -72,6 +72,7 @@ namespace B20_Ex05.FormsUI
             m_Game.Reveal += OnReveal;
             makePictures((o_Row * o_Col) / 2);
             m_IsPlayer1Turn = true;
+            m_SecondClick = false;
         }
 
         internal bool OnClick(Button i_Sender)
