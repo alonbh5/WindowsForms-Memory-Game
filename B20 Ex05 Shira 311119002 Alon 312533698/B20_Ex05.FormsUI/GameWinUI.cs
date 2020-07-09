@@ -141,7 +141,7 @@ namespace B20_Ex05.FormsUI
 
         private void resetButton(Button i_Button)
         {
-            ////Reset button to "Hidden" mode
+            ////Reset button to "Hidden" mode in the game
 
             i_Button.BackColor = Color.LightGray;
             i_Button.BackgroundImage = null;

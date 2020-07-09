@@ -144,7 +144,7 @@ namespace B20_Ex05.FormsUI
         private void welcomePage_FormClosing(object sender, FormClosedEventArgs e)
         {
             ////If player closed form - acts as he pressed "Start"
-            ////Set default names for playes if User didnt filled them 
+            ////Set default names for players if User didn't filled them 
 
             if (e.CloseReason == CloseReason.UserClosing) 
             {

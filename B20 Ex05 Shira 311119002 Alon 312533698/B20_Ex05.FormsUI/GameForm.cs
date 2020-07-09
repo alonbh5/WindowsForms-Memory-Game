@@ -128,8 +128,8 @@ namespace B20_Ex05.FormsUI
 
         private void tileButton_Click(object sender, EventArgs e)
         {
-            ////Invoke When button is pressed
-            ////Close Form is the Response from invoker was true (Game-Over}
+            ////Invoke when button is pressed
+            ////Close form is the response from invoker was true (Game-Over)
 
             if (this.Enabled)
             {

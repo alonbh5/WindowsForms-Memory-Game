@@ -99,7 +99,7 @@ namespace B20_Ex05.FormsUI
             this.m_PVPButton.Name = "m_PVPButton";
             this.m_PVPButton.Size = new System.Drawing.Size(125, 20);
             this.m_PVPButton.TabIndex = 2;
-            this.m_PVPButton.Text = "Aginst A Friend";
+            this.m_PVPButton.Text = "Against A Friend";
             this.m_PVPButton.UseVisualStyleBackColor = true;
             this.m_PVPButton.Click += new System.EventHandler(this.pvpButton_Click);
             // 
@@ -114,7 +114,7 @@ namespace B20_Ex05.FormsUI
             this.m_boardSizeButton.UseVisualStyleBackColor = false;
             this.m_boardSizeButton.Click += new System.EventHandler(this.boardSizeButton_Click);
             // 
-            // WelcomePage
+            // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -130,7 +130,7 @@ namespace B20_Ex05.FormsUI
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "WelcomePage";
+            this.Name = "SettingForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Memory Game - Setting";
