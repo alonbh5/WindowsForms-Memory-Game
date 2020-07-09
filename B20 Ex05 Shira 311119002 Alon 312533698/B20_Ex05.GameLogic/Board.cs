@@ -9,8 +9,7 @@ namespace B20_Ex05
         private readonly int r_Rows;
         private readonly int r_Cols;
         private readonly int r_TotalPairs;
-        private int m_ExposesPairs;
-        
+        private int m_ExposesPairs;        
 
         internal Board(int i_Rows, int i_Cols)
         {

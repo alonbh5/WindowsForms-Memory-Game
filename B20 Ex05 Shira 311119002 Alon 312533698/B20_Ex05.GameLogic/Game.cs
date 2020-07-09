@@ -17,19 +17,20 @@ using System;
 
  namespace B20_Ex05
 {
-
     public delegate void PairFoundInvoker(bool i_Found);
+
     public delegate void RevealInvoker(int i_row, int i_col);
 
     public class Game             
     {
-        internal static Random s_Random = new Random();
+        public event PairFoundInvoker PairWasFound;
 
+        public event RevealInvoker Reveal;
+
+        internal static Random s_Random = new Random();
         private Player m_Player1;
         private Player m_Player2;
-        private Board m_GameBoard;
-        public event PairFoundInvoker PairWasFound;
-        public event RevealInvoker Reveal;
+        private Board m_GameBoard;        
 
         public Game(string i_Name1, string i_Name2, bool i_Pvc, int i_Row, int i_Col)
         {
@@ -91,7 +92,6 @@ using System;
         public void SecondReveal(int i_Row, int i_Col)
         {
             m_GameBoard.Expose(i_Row, i_Col);
-
 
             if (Reveal != null)
             {
@@ -188,7 +188,6 @@ using System;
         {
             return m_GameBoard.m_Board[i_Row, i_Col].Value;
         }
-
 
         public bool IsAIPlay()
         {

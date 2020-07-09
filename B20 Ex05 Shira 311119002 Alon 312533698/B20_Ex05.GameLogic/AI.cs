@@ -34,8 +34,7 @@ namespace B20_Ex05
         private int m_Revealed = 0;
         private bool m_DoSmartChoice = false;
         private int m_PairsInMem = 0;
-        private int m_IndexToAdd = 0;
-        
+        private int m_IndexToAdd = 0;        
 
         public void PlayTurn(ref int io_Row, ref int io_Col, Board i_Gameboard)
         {
@@ -127,10 +126,10 @@ namespace B20_Ex05
                                 m_AIMem[i].m_Row = i_Row;
                                 m_AIMem[i].m_SentFirstLoc = true;
                             }
-
                         }
+
                             isFound = true;
-                            break;                        
+                            break;                       
                     }
                 }
 
