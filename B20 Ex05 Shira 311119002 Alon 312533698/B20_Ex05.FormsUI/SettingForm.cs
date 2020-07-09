@@ -63,7 +63,7 @@ namespace B20_Ex05.FormsUI
             }
         }
 
-        private void startButton_Click(object sender, EventArgs e)
+        private void startButton_Click(object i_sender, EventArgs i_e)
         {
             ////When start button was click Checks if all the text boxs was filled by User
             ////If so, notify UI that user want to start game
@@ -90,7 +90,7 @@ namespace B20_Ex05.FormsUI
             }
         }
 
-        private void boardSizeButton_Click(object sender, EventArgs e)
+        private void boardSizeButton_Click(object i_sender, EventArgs i_e)
         {
             m_Choice++;
             m_Choice = m_Choice % k_NumOfBoardSizes;
@@ -141,12 +141,12 @@ namespace B20_Ex05.FormsUI
             }
         }
 
-        private void welcomePage_FormClosing(object sender, FormClosedEventArgs e)
+        private void welcomePage_FormClosing(object i_sender, FormClosedEventArgs i_e)
         {
             ////If player closed form - acts as he pressed "Start"
             ////Set default names for players if User didn't filled them 
 
-            if (e.CloseReason == CloseReason.UserClosing) 
+            if (i_e.CloseReason == CloseReason.UserClosing) 
             {
                 if (m_Player1NameTextBox.Text == string.Empty)
                 {
@@ -158,7 +158,7 @@ namespace B20_Ex05.FormsUI
                     m_Player2NameTextBox.Text = "Player 2";
                 }
 
-                startButton_Click(sender, e);
+                startButton_Click(i_sender, i_e);
             }            
         }
     }    

@@ -15,7 +15,7 @@ namespace B20_Ex05.FormsUI
             this.m_ScoreLabel.Text = i_Msg;
         }
 
-        private void again_Click(object sender, EventArgs e)
+        private void again_Click(object i_sender, EventArgs i_e)
         {
             this.DialogResult = DialogResult.Yes;
             this.Close();
@@ -26,7 +26,7 @@ namespace B20_Ex05.FormsUI
             }
         }
 
-        private void exit_Click(object sender, EventArgs e)
+        private void exit_Click(object i_sender, EventArgs i_e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();

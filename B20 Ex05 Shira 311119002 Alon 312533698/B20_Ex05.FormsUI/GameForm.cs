@@ -126,20 +126,20 @@ namespace B20_Ex05.FormsUI
             }           
         }
 
-        private void tileButton_Click(object sender, EventArgs e)
+        private void tileButton_Click(object i_sender, EventArgs i_e)
         {
             ////Invoke when button is pressed
             ////Close form is the response from invoker was true (Game-Over)
 
             if (this.Enabled)
             {
-                if (sender is Button)
+                if (i_sender is Button)
                 {
-                    if ((sender as Button).BackColor == Color.LightGray)
+                    if ((i_sender as Button).BackColor == Color.LightGray)
                     {   
                         if (PairWasChosen != null)
                         {
-                            if (PairWasChosen.Invoke(sender as Button)) 
+                            if (PairWasChosen.Invoke(i_sender as Button)) 
                             {
                                 this.DialogResult = DialogResult.OK;                                
                                 Thread.Sleep(2000);
