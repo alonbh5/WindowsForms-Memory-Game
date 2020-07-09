@@ -94,7 +94,7 @@ namespace B20_Ex05.FormsUI
             int spaceForX = 115;
             int spaceForY = 105;
 
-            this.Size = new Size(130 * i_Col, 146 * i_Row);
+            this.Size = new Size(130 * i_Col, 145 * i_Row);
 
             for (int i = 0; i < i_Row; i++) 
             {
