@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace B20_Ex05.FormsUI
 {
-    public delegate bool PairInvoker(int i_Row, int i_Col, object i_Sender);
+    public delegate bool PairInvoker(Button i_Sender);
 
     public partial class GameForm : Form
     {
@@ -48,6 +48,8 @@ namespace B20_Ex05.FormsUI
 
         internal void Player1FoundPair()
         {
+            //// Adds 1 point to Player 1
+            
             m_Player1Pairs++;
             m_Player1Label.Text = string.Format("{0}: {1} Pair(s)", Player1Name, m_Player1Pairs);
             m_Player1Label.Refresh();
@@ -55,6 +57,8 @@ namespace B20_Ex05.FormsUI
 
         internal void Player2FoundPair()
         {
+            //// Adds 1 point to Player 2
+
             m_Player2Pairs++;
             m_Player2Label.Text = string.Format("{0}: {1} Pair(s)", Player2Name, m_Player2Pairs);
             m_Player2Label.Refresh();
@@ -87,6 +91,8 @@ namespace B20_Ex05.FormsUI
 
         private void createButtons(int i_Col, int i_Row)
         {
+            ////Create all the tiles buttons on form and fix the form size 
+
             m_Buttons = new Button[i_Row, i_Col];
             Button currButton;
             int xAxis = 25;
@@ -122,18 +128,18 @@ namespace B20_Ex05.FormsUI
 
         private void tileButton_Click(object sender, EventArgs e)
         {
+            ////Invoke When button is pressed
+            ////Close Form is the Response from invoker was true (Game-Over}
+
             if (this.Enabled)
             {
                 if (sender is Button)
                 {
                     if ((sender as Button).BackColor == Color.LightGray)
-                    {
-                        int row = int.Parse((sender as Button).Name[0].ToString());
-                        int col = int.Parse((sender as Button).Name[2].ToString());
-
+                    {   
                         if (PairWasChosen != null)
                         {
-                            if (PairWasChosen.Invoke(row, col, sender))
+                            if (PairWasChosen.Invoke(sender as Button)) 
                             {
                                 this.DialogResult = DialogResult.OK;                                
                                 Thread.Sleep(2000);

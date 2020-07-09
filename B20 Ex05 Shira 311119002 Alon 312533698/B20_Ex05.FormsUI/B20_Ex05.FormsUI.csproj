@@ -66,11 +66,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="WelcomePage.cs">
+    <Compile Include="SettingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WelcomePage.Designer.cs">
-      <DependentUpon>WelcomePage.cs</DependentUpon>
+    <Compile Include="SettingForm.Designer.cs">
+      <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -84,8 +84,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="WelcomePage.resx">
-      <DependentUpon>WelcomePage.cs</DependentUpon>
+    <EmbeddedResource Include="SettingForm.resx">
+      <DependentUpon>SettingForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 namespace B20_Ex05.FormsUI
 {
-    public partial class WelcomePage
+    public partial class SettingForm
     {
         /// <summary>
         /// Required designer variable.

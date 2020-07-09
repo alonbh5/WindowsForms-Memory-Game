@@ -8,7 +8,7 @@ namespace B20_Ex05.FormsUI
 {
     public class GameWinUI
     {
-        private WelcomePage m_FormSetting = new WelcomePage();
+        private SettingForm m_FormSetting = new SettingForm();
         private GameForm m_GameForm;
         private GameOver m_GameOver;
         private Game m_Game;
@@ -48,34 +48,55 @@ namespace B20_Ex05.FormsUI
 
         internal void OnStartClick(string o_Name1, string o_Name2, bool o_Pvc, int o_Row, int o_Col)
         {
-            m_Game = new Game(o_Name1, o_Name2, o_Pvc, o_Row, o_Col);
-            m_GameForm = new GameForm(o_Col, o_Row, o_Name1, o_Name2);
-            m_Game.PairWasFound += OnPairFound;
-            m_Game.Reveal += OnReveal;            
-            makePictures((o_Row * o_Col) / 2);
+            ////Function for SettingForm to Invoke when User press "Start"
+            ////Gets all of the game setting and create a new game
+
+            createNewGame(o_Name1, o_Name2, o_Pvc, o_Row, o_Col);            
         }
 
         internal void OnPlayAgain()
         {
-            OnStartClick(m_Game.Player1Name(), m_Game.Player2Name(), m_Game.IsAIPlay(), m_Game.BoardRows(), m_Game.BoardCols());
-        }      
+            ////Function for GameOver to Invoke when User press "Play Again"
+            ////Create a new game with the same setting as the previous game
 
-        internal bool OnClick(int io_Row, int io_Col, object i_Sender)
+            createNewGame(m_Game.Player1Name(), m_Game.Player2Name(), m_Game.IsAIPlay(), m_Game.BoardRows(), m_Game.BoardCols());
+        }
+
+        private void createNewGame(string o_Name1, string o_Name2, bool o_Pvc, int o_Row, int o_Col)
+        {            
+            ////Gets all of the game setting and create a new game
+
+            m_Game = new Game(o_Name1, o_Name2, o_Pvc, o_Row, o_Col);
+            m_GameForm = new GameForm(o_Col, o_Row, o_Name1, o_Name2);
+            m_Game.PairWasFound += OnPairFound;
+            m_Game.Reveal += OnReveal;
+            makePictures((o_Row * o_Col) / 2);
+            m_IsPlayer1Turn = true;
+        }
+
+        internal bool OnClick(Button i_Sender)
         {
+            ////Function for GameForm to Invoke when User press any tile button
+            ////Gets what button was pressed, 
+            ////Play the game based on witch turn it was by calling GameLogic Function
+
+            int row = int.Parse(i_Sender.Name[0].ToString());
+            int col = int.Parse(i_Sender.Name[2].ToString());
+
             if (!m_SecondClick)
             {
                 m_SecondClick = true;
-                m_Game.FirstReveal(io_Row, io_Col, m_IsPlayer1Turn);                
-                m_FirstRow = io_Row;
-                m_FirstCol = io_Col;
-                m_FirstButton = i_Sender as Button;
+                m_Game.FirstReveal(row, col, m_IsPlayer1Turn);                
+                m_FirstRow = row;
+                m_FirstCol = col;
+                m_FirstButton = i_Sender;
             }
             else 
             {
                 m_SecondClick = false;
-                m_Game.SecondReveal(io_Row, io_Col);
-                m_SecondButton = i_Sender as Button;
-                m_Game.CheckTurn(m_FirstRow, m_FirstCol, io_Row, io_Col, ref m_IsPlayer1Turn);           
+                m_Game.SecondReveal(row, col);
+                m_SecondButton = i_Sender;
+                m_Game.CheckTurn(m_FirstRow, m_FirstCol, row, col, ref m_IsPlayer1Turn);           
             }
             
             if ((!m_Game.IsGameOver()) && !m_IsPlayer1Turn && m_Game.IsAIPlay()) 
@@ -96,9 +117,11 @@ namespace B20_Ex05.FormsUI
 
         private void playAI()
         {
-            int row = -1, col = -1;
+            ////Function called when AI is playing & it is his turn to play
+            ////Call AI Input and let's it play until the game is over or when his turn passed
 
-            // AI turn until he got a wrong pair, m_IsPlayer1Turn changed to true or end of game
+            int row = -1, col = -1;
+            
             while ((!m_Game.IsGameOver()) && !m_IsPlayer1Turn && m_Game.IsAIPlay())
             {                            
                 Thread.Sleep(1000);                
@@ -117,6 +140,8 @@ namespace B20_Ex05.FormsUI
 
         private void resetButton(Button i_Button)
         {
+            ////Reset button to "Hidden" mode
+
             i_Button.BackColor = Color.LightGray;
             i_Button.BackgroundImage = null;
             i_Button.Refresh();
@@ -124,6 +149,10 @@ namespace B20_Ex05.FormsUI
 
         internal void OnReveal(int io_Row, int io_Col)
         {
+            ////Function for GameLogic to Invoke when the tile is reveled
+            ////Gets what indexes was reveled  
+            ////Set the correct button on GameForm to "Expose" state
+
             Button currButton = m_GameForm.Buttons[io_Row, io_Col];
             int index = m_Game.GetIndexAtBoard(io_Row, io_Col);
 
@@ -147,6 +176,11 @@ namespace B20_Ex05.FormsUI
 
         internal void OnPairFound(bool i_FoundPair)
         {
+            ////Function for GameLogic to Invoke when the Turn is finished
+            ////Gets if the last turn exposed a pair or not:
+            ////    1.If pair was found : Update Score 
+            ////    2.If pair was not found : Hide the tiles
+
             if (i_FoundPair)
             {                
                 if (m_IsPlayer1Turn)
@@ -177,6 +211,7 @@ namespace B20_Ex05.FormsUI
 
         private void gameOver()
         {
+            ////Write Score and Creating gameOver Form for last game playied
             StringBuilder prompt = new StringBuilder();
             string msg = string.Empty;
 
@@ -203,12 +238,15 @@ namespace B20_Ex05.FormsUI
             m_GameOver.PlayAgainClicked += OnPlayAgain;
         }
 
-        private void makePictures(int i_Size)
+        private void makePictures(int i_AmountOfPairsInGame)
         {
-            m_Pictures = new string[i_Size];
+            ////Gets Amount of pairs in game
+            ////Create an Araay of String, and Puts a random Image URL string in each cell
+            
+            m_Pictures = new string[i_AmountOfPairsInGame];
             string ImgUrl = string.Empty;
 
-            for (int i = 0; i < i_Size; i++) 
+            for (int i = 0; i < i_AmountOfPairsInGame; i++) 
             {
                 System.Net.HttpWebRequest req = (System.Net.HttpWebRequest)System.Net.WebRequest.Create("https://picsum.photos/80");
                 System.Net.HttpWebResponse myResp = (System.Net.HttpWebResponse)req.GetResponse();

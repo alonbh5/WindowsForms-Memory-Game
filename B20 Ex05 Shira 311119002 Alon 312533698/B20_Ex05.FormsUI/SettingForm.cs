@@ -17,7 +17,7 @@ namespace B20_Ex05.FormsUI
 
     public delegate void StartInvoker(string i_Name1, string i_Name2, bool i_Pvc, int i_NumOfRows, int i_NumOfCols);    
 
-    public partial class WelcomePage : Form
+    public partial class SettingForm : Form
     {
         internal event StartInvoker StartClicked;
 
@@ -29,7 +29,7 @@ namespace B20_Ex05.FormsUI
         private int m_Choice = 0;
         private bool m_PvC = true;
 
-        public WelcomePage()
+        public SettingForm()
         {
             InitializeComponent();
             this.FormClosed += welcomePage_FormClosing;
@@ -65,6 +65,9 @@ namespace B20_Ex05.FormsUI
 
         private void startButton_Click(object sender, EventArgs e)
         {
+            ////When start button was click Checks if all the text boxs was filled by User
+            ////If so, notify UI that user want to start game
+            
             if (m_Player1NameTextBox.Text == string.Empty)
             {
                 MessageBox.Show("Please Enter Player 1 Name");                
@@ -140,6 +143,9 @@ namespace B20_Ex05.FormsUI
 
         private void welcomePage_FormClosing(object sender, FormClosedEventArgs e)
         {
+            ////If player closed form - acts as he pressed "Start"
+            ////Set default names for playes if User didnt filled them 
+
             if (e.CloseReason == CloseReason.UserClosing) 
             {
                 if (m_Player1NameTextBox.Text == string.Empty)
